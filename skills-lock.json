@@ -143,7 +143,7 @@
     },
     "telemetry-collection": {
       "path": "skills/telemetry-collection",
-      "sha256": "48d1348b4b53cd9b33a34d2f5b3bc4efa0256459407d520d93c356b63b21bd8b",
+      "sha256": "f5c6d6e2feb252d88d0df20491345b0903279a4734076fdbc01e7df305a21894",
       "files": 10
     },
     "threat-intel-enrichment": {

@@ -1,14 +1,17 @@
 # ARGUS: defensive threat hunting for Claude Code
 
 ```text
-     ___      .______        _______  __    __       _______.
-    /   \     |   _  \      /  _____||  |  |  |     /       |
-   /  ^  \    |  |_)  |    |  |  __  |  |  |  |    |   (----`
-  /  /_\  \   |      /     |  | |_ | |  |  |  |     \   \
- /  _____  \  |  |\  \----.|  |__| | |  `--'  | .----)   |
-/__/     \__\ | _| `._____| \______|  \______/  |_______/
-  defensive threat hunting  |  detect-only  |  MITRE ATT&CK
-  by HaiND from the Post and Telecommunication Institute of Technology
+  █████╗ ██████╗  ██████╗ ██╗   ██╗███████╗
+ ██╔══██╗██╔══██╗██╔════╝ ██║   ██║██╔════╝
+ ███████║██████╔╝██║  ███╗██║   ██║███████╗
+ ██╔══██║██╔══██╗██║   ██║██║   ██║╚════██║
+ ██║  ██║██║  ██║╚██████╔╝╚██████╔╝███████║
+ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+
+   defensive threat hunting  |  detect-only  |  MITRE ATT&CK
+  ╭──────────────────────────────────────────────────────────────────────╮
+  │ by HaiND from the Post and Telecommunication Institute of Technology │
+  ╰──────────────────────────────────────────────────────────────────────╯
 ```
 
 **Author:** by HaiND from the Post and Telecommunication Institute of Technology
@@ -55,6 +58,17 @@ Same dashboard on a clean host, the harness running the full-hunt workflow, and 
 - Used by `malware-triage`, `process-memory-analysis` (requires `pip install yara-python`).
 
 ## Install
+### From a release (pip package or container)
+Download from [Releases](https://github.com/Haind03/argus/releases): `argus_defense-0.1.0-py3-none-any.whl`,
+`argus-0.1.0-toolkit.zip` (full toolkit: skills, collectors, hooks) and `SHA256SUMS`.
+```bash
+pip install argus_defense-0.1.0-py3-none-any.whl[yara]      # command: argus
+argus hunt --input telemetry.json --preset full
+docker run --rm -v "$PWD:/work" ghcr.io/haind03/argus:0.1.0 hunt --input /work/telemetry.json --out-dir /work/reports
+```
+The pip package and the container contain the engine, presets, workflows and rules (offline analysis of
+telemetry collected on Windows). Collectors and Claude Code/Codex skills come from the toolkit zip or a git clone.
+
 ### As a Claude Code plugin (recommended)
 ```
 /plugin marketplace add haind03/argus

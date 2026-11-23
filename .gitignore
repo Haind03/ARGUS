@@ -14,3 +14,7 @@ argus-cases/
 *.pcap
 evidence/
 quarantine/
+dist/
+build/
+*.egg-info/
+engine/argus/_data/

@@ -14,7 +14,20 @@ import sys
 from pathlib import Path
 
 ENGINE_DIR = Path(__file__).resolve().parent
-REPO_ROOT = ENGINE_DIR.parent
+
+
+def _data_root() -> Path:
+    """Repo checkout -> repo root; pip-installed wheel -> bundled argus/_data; override with ARGUS_HOME."""
+    import os
+    env = os.environ.get("ARGUS_HOME")
+    if env and (Path(env) / "presets").is_dir():
+        return Path(env)
+    if (ENGINE_DIR.parent / "presets").is_dir():
+        return ENGINE_DIR.parent
+    return ENGINE_DIR / "argus" / "_data"
+
+
+REPO_ROOT = _data_root()
 if str(ENGINE_DIR) not in sys.path:
     sys.path.insert(0, str(ENGINE_DIR))
 
@@ -320,6 +333,10 @@ def main(argv=None) -> int:
     except (ValueError, OSError) as exc:
         print(f"argus: error: {exc}", file=sys.stderr)
         return 3
+
+
+def run() -> None:  # console_scripts entry point
+    sys.exit(main())
 
 
 if __name__ == "__main__":

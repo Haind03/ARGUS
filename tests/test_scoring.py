@@ -43,3 +43,18 @@ def test_finding_id_stable_and_short():
 
 def test_at_least():
     assert at_least("high", "medium") and not at_least("low", "medium")
+
+
+def test_banner_unicode_and_ascii_fallback():
+    import io
+    from argus import banner
+
+    class Ascii(io.StringIO):
+        encoding = "ascii"
+
+    sig = "by HaiND from the Post and Telecommunication Institute of Technology"
+    assert sig in banner.text() and "█" in banner.text()
+    buf = Ascii()
+    banner.show("0.1.0", stream=buf)
+    out = buf.getvalue()
+    assert sig in out and "█" not in out
