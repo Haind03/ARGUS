@@ -1,0 +1,116 @@
+id: full-hunt
+name: Full hypothesis-driven hunt (MITRE ATT&CK Enterprise, Windows host)
+mode: detect-only
+description: >
+  Sequential kill-chain hunt on the user's own PC. Each phase states a falsifiable hypothesis,
+  the data it needs, the skill that hunts it and the ARGUS rules that test it. Phases never remediate.
+  Reconnaissance (TA0043) and Resource Development (TA0042) happen on attacker infrastructure and are
+  handled as threat-intel input only.
+discipline: [scope-discipline, hunt-methodology, evidence-discipline, false-positive-discipline, reporting-discipline]
+phases:
+  - id: scope
+    name: Scope & authorization
+    skills: [scope-discipline]
+    hypothesis: The analyst is authorised to examine this machine and the collection is complete enough to hunt.
+    gate:
+      require_sections: [host, processes]
+      blocking: true
+
+  - id: pre-compromise
+    name: TA0043 / TA0042 — out of host scope
+    skills: [threat-intel-enrichment]
+    hypothesis: Known attacker infrastructure (domains/IPs/hashes) from intel appears in local telemetry.
+    tactics: []
+    note: Load IOC lists into skills/references/ioc/; matching happens automatically during scoring.
+
+  - id: initial-access
+    name: TA0001 Initial Access
+    skills: [initial-access-hunting, browser-forensics]
+    hypothesis: Malware entered via a document, browser download, removable media or exposed remote service.
+    tactics: [TA0001]
+
+  - id: execution
+    name: TA0002 Execution
+    skills: [execution-hunting]
+    hypothesis: Malicious code ran through PowerShell, script hosts, LOLBins, WMI or from user-writable paths.
+    tactics: [TA0002]
+
+  - id: persistence
+    name: TA0003 Persistence
+    skills: [persistence-hunting, baseline-and-diff]
+    hypothesis: Something re-launches malware at boot/logon (Run keys, tasks, services, WMI, IFEO, COM, extensions).
+    tactics: [TA0003]
+
+  - id: privilege-escalation
+    name: TA0004 Privilege Escalation
+    skills: [privesc-hunting]
+    hypothesis: The attacker gained higher privileges (UAC bypass, vulnerable driver, service path hijack, DLL hijack).
+    tactics: [TA0004]
+
+  - id: defense-evasion
+    name: TA0005 Defense Evasion
+    skills: [defense-evasion-hunting]
+    hypothesis: Defences were weakened or bypassed (Defender off/exclusions, logs cleared, masquerading, injection).
+    tactics: [TA0005]
+    gate:
+      require_sections: [defender]
+      blocking: false
+
+  - id: credential-access
+    name: TA0006 Credential Access
+    skills: [credential-access-hunting]
+    hypothesis: Credentials were stolen (LSASS, SAM, browser stores, brute force).
+    tactics: [TA0006]
+
+  - id: discovery
+    name: TA0007 Discovery
+    skills: [discovery-hunting]
+    hypothesis: Post-compromise reconnaissance ran on the host.
+    tactics: [TA0007]
+
+  - id: lateral-movement
+    name: TA0008 Lateral Movement
+    skills: [lateral-movement-hunting]
+    hypothesis: Another machine moved into (or from) this PC via SMB/WinRM/RDP.
+    tactics: [TA0008]
+
+  - id: collection
+    name: TA0009 Collection
+    skills: [collection-hunting]
+    hypothesis: Data was gathered or staged (archives, keylogging, screen/clipboard capture).
+    tactics: [TA0009]
+
+  - id: command-and-control
+    name: TA0011 Command and Control
+    skills: [c2-hunting, network-forensics]
+    hypothesis: The host talks to attacker infrastructure (beacon, web-service C2, tunnel, RMM, DGA).
+    tactics: [TA0011]
+    gate:
+      require_sections: [network]
+      blocking: false
+
+  - id: exfiltration
+    name: TA0010 Exfiltration
+    skills: [exfiltration-hunting]
+    hypothesis: Data left the host (rclone/MEGA, uploads, large outbound volume).
+    tactics: [TA0010]
+
+  - id: impact
+    name: TA0040 Impact
+    skills: [impact-hunting]
+    hypothesis: Destructive activity or its precursors (shadow-copy deletion, encryption, service stops, mining).
+    tactics: [TA0040]
+
+  - id: deep-dive
+    name: Analysis of top leads (conditional)
+    skills: [malware-triage, memory-acquisition, memory-forensics, process-memory-analysis, disk-forensics, eventlog-forensics]
+    hypothesis: High-scoring leads are confirmed or refuted with static triage, memory and artefact analysis.
+    when: any finding score >= 60
+
+  - id: report
+    name: Report
+    skills: [reporting-discipline]
+    hypothesis: Every high/critical finding has an analyst disposition before the report is final.
+    gate:
+      require_dispositions: [critical, high]
+      blocking: true

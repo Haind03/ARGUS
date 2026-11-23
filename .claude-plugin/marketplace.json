@@ -1,0 +1,16 @@
+{
+  "name": "argus-marketplace",
+  "description": "Marketplace for ARGUS (defensive-claude), a detect-only threat-hunting toolkit",
+  "owner": {
+    "name": "haind03",
+    "url": "https://github.com/haind03"
+  },
+  "plugins": [
+    {
+      "name": "defensive-claude",
+      "description": "ARGUS: detect-only threat hunting for your own Windows PC across MITRE ATT&CK, with collectors, scoring engine, forensics skills and a safety harness.",
+      "version": "0.1.0",
+      "source": "./"
+    }
+  ]
+}

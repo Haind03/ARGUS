@@ -1,0 +1,103 @@
+{
+  "id": "ransomware-response",
+  "name": "Ransomware focus (precursors + active encryption)",
+  "mode": "detect-only until IR opt-in",
+  "description": "Hunts the ransomware kill chain: credential theft -> defence evasion -> staging/exfil -> recovery inhibition -> encryption. If active encryption is suspected: isolate network FIRST, keep the machine powered on, capture memory.\n",
+  "discipline": [
+    "scope-discipline",
+    "evidence-discipline",
+    "reporting-discipline"
+  ],
+  "phases": [
+    {
+      "id": "scope",
+      "name": "Scope",
+      "skills": [
+        "scope-discipline"
+      ],
+      "hypothesis": "Authorised own machine; collection includes files and shadow-copy count.",
+      "gate": {
+        "require_sections": [
+          "host",
+          "processes"
+        ],
+        "blocking": true
+      }
+    },
+    {
+      "id": "impact",
+      "name": "TA0040 Impact (first — time critical)",
+      "skills": [
+        "impact-hunting"
+      ],
+      "hypothesis": "Shadow copies deleted, services mass-stopped, ransom notes or mass renames present.",
+      "tactics": [
+        "TA0040"
+      ]
+    },
+    {
+      "id": "evasion",
+      "name": "TA0005 Defense Evasion",
+      "skills": [
+        "defense-evasion-hunting"
+      ],
+      "hypothesis": "Defender disabled / excluded, logs cleared before impact.",
+      "tactics": [
+        "TA0005"
+      ]
+    },
+    {
+      "id": "credentials",
+      "name": "TA0006 Credential Access",
+      "skills": [
+        "credential-access-hunting"
+      ],
+      "hypothesis": "Credentials dumped before encryption (double extortion / spreading).",
+      "tactics": [
+        "TA0006"
+      ]
+    },
+    {
+      "id": "staging-exfil",
+      "name": "TA0009 / TA0010 Collection & Exfiltration",
+      "skills": [
+        "collection-hunting",
+        "exfiltration-hunting"
+      ],
+      "hypothesis": "Data was archived and exfiltrated (rclone/MEGA) before encryption.",
+      "tactics": [
+        "TA0009",
+        "TA0010"
+      ]
+    },
+    {
+      "id": "persistence-c2",
+      "name": "TA0003 / TA0011 Persistence & C2",
+      "skills": [
+        "persistence-hunting",
+        "c2-hunting"
+      ],
+      "hypothesis": "Operator access (RMM, tunnels, tasks) persists and could re-trigger encryption.",
+      "tactics": [
+        "TA0003",
+        "TA0011"
+      ]
+    },
+    {
+      "id": "report",
+      "name": "Report",
+      "skills": [
+        "reporting-discipline",
+        "incident-response"
+      ],
+      "hypothesis": "User knows whether encryption occurred, what was exfiltrated, and next steps.",
+      "gate": {
+        "require_dispositions": [
+          "critical",
+          "high"
+        ],
+        "blocking": true
+      }
+    }
+  ]
+}

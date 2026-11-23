@@ -1,0 +1,19 @@
+title: WMI Permanent Event Consumer Registered
+id: 8d8d1d95-3dc0-5bda-999b-35765ffec027
+status: experimental
+description: ARGUS starter rule (defensive). Maps to MITRE ATT&CK T1546.003.
+author: ARGUS
+date: 2026-11-23
+tags:
+    - attack.persistence
+    - attack.t1546.003
+logsource:
+    product: windows
+    service: wmi
+detection:
+    selection:
+        EventID: 5861
+    condition: selection
+falsepositives:
+    - OEM management software
+level: high

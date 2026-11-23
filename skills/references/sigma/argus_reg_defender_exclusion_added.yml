@@ -1,0 +1,20 @@
+title: Defender Exclusion Added
+id: 39e62a67-b9df-5f1d-b842-a528cbd2d63a
+status: experimental
+description: ARGUS starter rule (defensive). Maps to MITRE ATT&CK T1562.001.
+author: ARGUS
+date: 2026-11-23
+tags:
+    - attack.defense_evasion
+    - attack.t1562.001
+logsource:
+    product: windows
+    service: windefend
+detection:
+    selection:
+        EventID: 5007
+        NewValue|contains: '\\Exclusions\\'
+    condition: selection
+falsepositives:
+    - User-configured exclusions for dev/game folders
+level: high

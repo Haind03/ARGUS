@@ -1,0 +1,11 @@
+# Known vulnerable / abused kernel drivers (BYOVD). Starter list; extend from loldrivers.io export:
+#   python -I skills/threat-intel-enrichment/scripts/update_iocs.py --kind vuln_drivers --from-file drivers.csv
+rtcore64.sys
+dbutil_2_3.sys
+gdrv.sys
+iqvw64e.sys
+aswarpot.sys
+mhyprot2.sys
+procexp152.sys
+zamguard64.sys
+truesight.sys

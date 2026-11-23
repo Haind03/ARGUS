@@ -1,0 +1,10 @@
+{
+  "description": "First run on a freshly installed / known-clean machine: full collection, every finding shown (min_score 0) so the analyst can review before saving the baseline.",
+  "collector_sections": ["all"],
+  "event_hours": 720,
+  "tactics": ["TA0001", "TA0002", "TA0003", "TA0004", "TA0005", "TA0006", "TA0007", "TA0008", "TA0009", "TA0011", "TA0010", "TA0040"],
+  "min_score": 0,
+  "min_severity": "info",
+  "create_baseline_after_review": true,
+  "disabled_rules": []
+}

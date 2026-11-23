@@ -1,0 +1,31 @@
+title: PowerShell Encoded Command With Hidden Window
+id: d3491076-9622-5997-a12e-0a1dc95d27ea
+status: experimental
+description: ARGUS starter rule (defensive). PowerShell Encoded Command With Hidden Window. Maps to MITRE ATT&CK T1059.001.
+author: ARGUS
+date: 2026-11-23
+tags:
+    - attack.execution
+    - attack.t1059.001
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_img:
+        Image|endswith:
+            - '\\powershell.exe'
+            - '\\pwsh.exe'
+    selection_enc:
+        CommandLine|contains:
+            - ' -enc '
+            - ' -ec '
+            - ' -encodedcommand '
+    selection_hidden:
+        CommandLine|contains:
+            - ' -w hidden'
+            - ' -windowstyle hidden'
+            - ' -w 1 '
+    condition: selection_img and selection_enc and selection_hidden
+falsepositives:
+    - Management agents (SCCM/Intune) use encoded commands
+level: medium

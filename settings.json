@@ -1,0 +1,44 @@
+{
+  "$comment": "Example project settings for ARGUS (copy to .claude/settings.json or merge into ~/.claude/settings.json). Read-only collection and scoring are pre-approved; anything state-changing is asked or denied. The ARGUS PreToolUse guard (hooks/hooks.json) adds a second, command-aware layer.",
+  "includeCoAuthoredBy": false,
+  "attribution": { "commit": "", "pr": "" },
+  "env": {
+    "ARGUS_INTEL_ONLINE": "0"
+  },
+  "permissions": {
+    "allow": [
+      "Read(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "Skill(*)",
+      "Bash(python -I engine/argus_cli.py hunt *)",
+      "Bash(python -I engine/argus_cli.py rules *)",
+      "Bash(python -I engine/argus_cli.py coverage *)",
+      "Bash(python -I engine/argus_cli.py diff *)",
+      "Bash(python -I engine/argus_cli.py triage *)",
+      "Bash(python -I engine/argus_cli.py case findings *)",
+      "Bash(python -I engine/argus_cli.py case verify *)",
+      "Bash(python -I engine/argus_cli.py case run *)",
+      "Bash(python -I skills/*/scripts/*.py *)",
+      "Bash(powershell -NoProfile -ExecutionPolicy RemoteSigned -File skills\\telemetry-collection\\scripts\\Collect-Telemetry.ps1 *)",
+      "Bash(python -m pytest *)"
+    ],
+    "ask": [
+      "Bash(python -I engine/argus_cli.py case optin *)",
+      "Bash(python -I engine/argus_cli.py case dispose *)",
+      "Bash(python -I engine/argus_cli.py * --online*)",
+      "Bash(powershell * Invoke-ArgusResponse.ps1 *)",
+      "Bash(powershell * Invoke-ArgusMemoryDump.ps1 *)",
+      "Bash(powershell * Start-ArgusPacketCapture.ps1 *)",
+      "Bash(powershell * Register-ArgusScheduledScan.ps1 *)",
+      "Bash(powershell * Enable-ArgusLogging.ps1 *)",
+      "WebFetch(*)"
+    ],
+    "deny": [
+      "Bash(* Set-MpPreference *)",
+      "Bash(* Add-MpPreference *)",
+      "Bash(vssadmin delete *)",
+      "Bash(* -ExclusionPath *)"
+    ]
+  }
+}

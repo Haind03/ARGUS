@@ -1,0 +1,170 @@
+{
+  "schema": "argus.skills-lock/1",
+  "skills": {
+    "baseline-and-diff": {
+      "path": "skills/baseline-and-diff",
+      "sha256": "6ad10dc48d19bbe5b8801dc5f467e564c00687075e50dc5c0a1089116e343e2e",
+      "files": 6
+    },
+    "browser-forensics": {
+      "path": "skills/browser-forensics",
+      "sha256": "ea6376ab9d1472c7a5bf2af632c8e9d7f3a164652bea14cbb1843c89f2b26afe",
+      "files": 4
+    },
+    "c2-hunting": {
+      "path": "skills/c2-hunting",
+      "sha256": "d9c6458fb8d40d949bc9890aae9c261a1f5e1b8084f87d7e1cef82cd858af9cd",
+      "files": 11
+    },
+    "collection-hunting": {
+      "path": "skills/collection-hunting",
+      "sha256": "7ca72bb73238bd5d798abed3e53724575cac93b330709c04d620eb34a9d5ca4c",
+      "files": 7
+    },
+    "credential-access-hunting": {
+      "path": "skills/credential-access-hunting",
+      "sha256": "611733d36c1df19807212b2d2f74141912c89c49a0815538c4eae39a94c2cb0d",
+      "files": 8
+    },
+    "defense-evasion-hunting": {
+      "path": "skills/defense-evasion-hunting",
+      "sha256": "e1d72a502aa3da3d0e029794cc350c705b22c78f27cfbb3c2a4141f97dfd9d75",
+      "files": 12
+    },
+    "discovery-hunting": {
+      "path": "skills/discovery-hunting",
+      "sha256": "d3fbeb390b5ad5456760c6c4cedbceb861499e3e2501661255968c52b577f0d9",
+      "files": 6
+    },
+    "disk-forensics": {
+      "path": "skills/disk-forensics",
+      "sha256": "85f1f7efa5a695de692bf26d852f7e5f64c689a2177206a3ca22cf860dfb3010",
+      "files": 5
+    },
+    "eventlog-forensics": {
+      "path": "skills/eventlog-forensics",
+      "sha256": "d7cc16f732f430657441d900ab83478a2c285413c3afe837d7b00006bb323e8f",
+      "files": 4
+    },
+    "evidence-discipline": {
+      "path": "skills/evidence-discipline",
+      "sha256": "d764ae67e2baddf6bcb64a79cfc4d6a669170e8920063d4f1c9219eea70402bd",
+      "files": 3
+    },
+    "execution-hunting": {
+      "path": "skills/execution-hunting",
+      "sha256": "effb59d7c05580e4b4be1542d556bceddbceb6ed0501af651d06881830a7478f",
+      "files": 10
+    },
+    "exfiltration-hunting": {
+      "path": "skills/exfiltration-hunting",
+      "sha256": "4506e1d90dfbee63c9da9eec95b8a60fc6fbeb98035017ead9cb7cdd00b401af",
+      "files": 7
+    },
+    "false-positive-discipline": {
+      "path": "skills/false-positive-discipline",
+      "sha256": "645fea10fd4a1931cea9506b617ea8cab6f45cc0c12b40c99d9da8151dd1d2a7",
+      "files": 3
+    },
+    "hunt-methodology": {
+      "path": "skills/hunt-methodology",
+      "sha256": "2b02867ac1cb41102501fed34df245fa8ec5a183e28b3367a18121902cf54e3d",
+      "files": 4
+    },
+    "impact-hunting": {
+      "path": "skills/impact-hunting",
+      "sha256": "5996e846f4e78687bc7a813efdd209bbe87755917e056c9145238d8645e66f0a",
+      "files": 8
+    },
+    "incident-response": {
+      "path": "skills/incident-response",
+      "sha256": "cb6e0fc79c226f7b2dc8251d8b5567332d2e7a93ca80f5a90ac3f75f77f95d1f",
+      "files": 5
+    },
+    "initial-access-hunting": {
+      "path": "skills/initial-access-hunting",
+      "sha256": "8a55d5f280aba66cd6eab9e996aa5007e26e3fb9015fec6d7fbb90ea1a40acd9",
+      "files": 10
+    },
+    "lateral-movement-hunting": {
+      "path": "skills/lateral-movement-hunting",
+      "sha256": "c776405f080e3f247c10ddebf31f35fd410cf95ffc68ccc6346772f3dc498620",
+      "files": 7
+    },
+    "malware-triage": {
+      "path": "skills/malware-triage",
+      "sha256": "8e2e1d55f875d0157874fc605c72e27592860d6d22afbdb18221e2a134f29bd9",
+      "files": 4
+    },
+    "memory-acquisition": {
+      "path": "skills/memory-acquisition",
+      "sha256": "e7b0011f2cdb057fe62692480d49297fef772c6fdd3b11791a947867a200aef8",
+      "files": 4
+    },
+    "memory-forensics": {
+      "path": "skills/memory-forensics",
+      "sha256": "551a695590ba4461910815382606f2f5e79226f2f74cc7d1f700f4ff3a24df70",
+      "files": 7
+    },
+    "network-forensics": {
+      "path": "skills/network-forensics",
+      "sha256": "75163738e6cb957cb970e9448b529ab1b7b7bf1d2cb04d41e2ccb78aafde310f",
+      "files": 4
+    },
+    "persistence-hunting": {
+      "path": "skills/persistence-hunting",
+      "sha256": "48ee23ab2dc23b6b5638d04cd22c52345a1f66c867b4ad4ec3089794089ed6c4",
+      "files": 15
+    },
+    "privesc-hunting": {
+      "path": "skills/privesc-hunting",
+      "sha256": "ac36e8e5c8fab8267eb60774013b2a56c92657f30822bac691cbce83f3e05769",
+      "files": 9
+    },
+    "process-memory-analysis": {
+      "path": "skills/process-memory-analysis",
+      "sha256": "dac605cfaed46984fd2c7296a23b2aef032644e090cf7c0e7d7b678b8620ddf6",
+      "files": 4
+    },
+    "references": {
+      "path": "skills/references",
+      "sha256": "05840fcf00ec2c98f26b9ac5cc19235b556a55cf4ba6736612aac9c8046679f9",
+      "files": 19
+    },
+    "reporting-discipline": {
+      "path": "skills/reporting-discipline",
+      "sha256": "5e555b74ba9cec41278073b27b1f49089f4f527818955143721fab627b831064",
+      "files": 3
+    },
+    "scope-discipline": {
+      "path": "skills/scope-discipline",
+      "sha256": "ef74a6ac0cb1a26b2c7fd76a91671a5e152659e3edec5936e012c209c97dd0f9",
+      "files": 3
+    },
+    "telemetry-collection": {
+      "path": "skills/telemetry-collection",
+      "sha256": "8224fdc03adf53916809a44305a297fd5bf4c4ba31e96a2477c2678f9383e515",
+      "files": 9
+    },
+    "threat-intel-enrichment": {
+      "path": "skills/threat-intel-enrichment",
+      "sha256": "47822ec403eebd99b105efa1fa16b5442d71544daecd6a6e8be82da208c7a168",
+      "files": 4
+    },
+    "using-argus": {
+      "path": "skills/using-argus",
+      "sha256": "d0b332b9b47a1d9095464f67b909db0db5f8eeb145356172b87f33da3d3029c7",
+      "files": 3
+    },
+    "writing-defensive-skills": {
+      "path": "skills/writing-defensive-skills",
+      "sha256": "f90196f0b94acb65ec7d3d730cd96bfbd52b2c7bcab385d05b8612a0d545d9da",
+      "files": 3
+    },
+    "yara-sigma-authoring": {
+      "path": "skills/yara-sigma-authoring",
+      "sha256": "e3ec84242d5dcf2222d87d0e3f2c3ed1a96c00832028053ac87042dc0a3bd60b",
+      "files": 5
+    }
+  }
+}

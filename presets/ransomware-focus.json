@@ -1,0 +1,11 @@
+{
+  "description": "Ransomware kill-chain focus: recovery inhibition, service stops, mass encryption artefacts, staging/exfil, credential theft.",
+  "collector_sections": ["host", "processes", "events", "files", "defender", "registry", "shadow_copies", "network", "scheduled_tasks", "services"],
+  "event_hours": 72,
+  "file_scan": {"recent_days": 3, "max_files": 50000, "include_documents": true},
+  "tactics": ["TA0003", "TA0005", "TA0006", "TA0009", "TA0010", "TA0011", "TA0040"],
+  "min_score": 25,
+  "min_severity": "low",
+  "signal_weight_overrides": {"vssadmin_delete_shadows": 85, "mass_service_stop": 55, "rclone_copy_to_remote": 55},
+  "disabled_rules": ["ARG-C2-004"]
+}

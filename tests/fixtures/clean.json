@@ -1,0 +1,31 @@
+{
+  "schema": "argus.telemetry/1",
+  "collected_at": "2026-11-20T08:00:00Z",
+  "host": {"hostname": "LAB-PC", "os": "Windows 11 23H2"},
+  "processes": [
+    {"pid": 600, "ppid": 500, "name": "wininit.exe", "path": "C:\\Windows\\System32\\wininit.exe", "signed": true, "signer": "Microsoft Windows"},
+    {"pid": 700, "ppid": 600, "name": "services.exe", "path": "C:\\Windows\\System32\\services.exe", "signed": true, "signer": "Microsoft Windows"},
+    {"pid": 800, "ppid": 700, "name": "svchost.exe", "path": "C:\\Windows\\System32\\svchost.exe", "cmdline": "C:\\Windows\\system32\\svchost.exe -k netsvcs -p", "signed": true, "signer": "Microsoft Windows"},
+    {"pid": 2000, "ppid": 1900, "name": "explorer.exe", "path": "C:\\Windows\\explorer.exe", "signed": true, "signer": "Microsoft Windows"},
+    {"pid": 2100, "ppid": 2000, "name": "chrome.exe", "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe", "signed": true, "signer": "Google LLC"},
+    {"pid": 2200, "ppid": 2000, "name": "Teams.exe", "path": "C:\\Users\\bob\\AppData\\Local\\Microsoft\\Teams\\current\\Teams.exe", "signed": true, "signer": "Microsoft Corporation"}
+  ],
+  "autoruns": [
+    {"location": "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", "name": "SecurityHealth", "value": "C:\\Windows\\System32\\SecurityHealthSystray.exe", "signed": true, "signer": "Microsoft Windows"},
+    {"location": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", "name": "Teams", "value": "C:\\Users\\bob\\AppData\\Local\\Microsoft\\Teams\\Update.exe --processStart Teams.exe", "signed": true, "signer": "Microsoft Corporation"}
+  ],
+  "scheduled_tasks": [
+    {"path": "\\Microsoft\\Windows\\Defrag\\", "name": "ScheduledDefrag", "actions": ["%windir%\\system32\\defrag.exe -c -h -o -$"], "author": "Microsoft Corporation"}
+  ],
+  "services": [
+    {"name": "Spooler", "path": "C:\\Windows\\System32\\spoolsv.exe", "account": "LocalSystem", "signed": true, "signer": "Microsoft Windows"}
+  ],
+  "network": [
+    {"proto": "tcp", "local": "192.168.1.10", "lport": 50200, "remote": "142.250.1.1", "rport": 443, "state": "Established", "pid": 2100, "process": "chrome.exe"}
+  ],
+  "defender": {"realtime_enabled": true, "antivirus_enabled": true, "tamper_protection": true, "behavior_monitor_enabled": true, "exclusions_path": [], "exclusions_process": [], "exclusions_extension": []},
+  "registry": {"winlogon": {"Shell": "explorer.exe", "Userinit": "C:\\Windows\\system32\\userinit.exe,"}},
+  "events": [],
+  "files": [],
+  "shadow_copies": 3
+}

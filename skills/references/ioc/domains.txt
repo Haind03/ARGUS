@@ -1,0 +1,2 @@
+# ARGUS local domain IOC list (one per line). Subdomains match too. Offline only.
+# Populate from ThreatFox / URLhaus exports with update_iocs.py --kind domains

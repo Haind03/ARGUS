@@ -1,0 +1,45 @@
+id: incident-investigation
+name: Incident investigation (suspected active compromise)
+mode: detect-only until IR opt-in
+description: >
+  Order of volatility first, then analysis, then (opt-in) containment. Used when the user already
+  suspects infection (AV alert, ransom note, strange behaviour).
+discipline: [scope-discipline, evidence-discipline, false-positive-discipline, reporting-discipline]
+phases:
+  - id: scope
+    name: Scope & case
+    skills: [scope-discipline, evidence-discipline]
+    hypothesis: The case is opened for the user's own machine and evidence handling is defined.
+    gate: {require_sections: [host], blocking: true}
+  - id: volatile
+    name: Volatile capture (memory, network, processes)
+    skills: [memory-acquisition, telemetry-collection, network-forensics]
+    hypothesis: Evidence that disappears on reboot is captured before anything changes.
+    note: Full RAM capture is opt-in (Invoke-ArgusMemoryDump.ps1 -Acquire). Do not reboot.
+  - id: triage-hunt
+    name: Rapid tactic sweep
+    skills: [hunt-methodology]
+    hypothesis: The heuristic engine surfaces the main artefacts of the intrusion.
+    tactics: [TA0001, TA0002, TA0003, TA0004, TA0005, TA0006, TA0007, TA0008, TA0009, TA0011, TA0010, TA0040]
+  - id: memory
+    name: Memory analysis
+    skills: [memory-forensics, process-memory-analysis]
+    hypothesis: Fileless / injected / rootkit components are present in RAM.
+  - id: artefacts
+    name: Disk, event-log and browser artefacts
+    skills: [disk-forensics, eventlog-forensics, browser-forensics]
+    hypothesis: A timeline shows initial access, execution, persistence and impact.
+  - id: samples
+    name: Sample triage
+    skills: [malware-triage, threat-intel-enrichment, yara-sigma-authoring]
+    hypothesis: Recovered binaries are malicious and yield IOCs/rules for scoping.
+  - id: containment
+    name: Containment & eradication (OPT-IN)
+    skills: [incident-response]
+    hypothesis: The user opted in and every action is evidence-preserving and reversible where possible.
+    gate: {require_ir_optin: true, blocking: true}
+  - id: report
+    name: Report & lessons learned
+    skills: [reporting-discipline]
+    hypothesis: Findings are dispositioned; report states what is confirmed vs suspected.
+    gate: {require_dispositions: [critical, high], blocking: true}

@@ -1,0 +1,27 @@
+title: Built-in Binary Downloads File (certutil / bitsadmin)
+id: b1d00ac3-fc2d-597d-b430-1b0ba90f2044
+status: experimental
+description: ARGUS starter rule (defensive). Built-in Binary Downloads File (certutil / bitsadmin). Maps to MITRE ATT&CK T1105.
+author: ARGUS
+date: 2026-11-23
+tags:
+    - attack.command_and_control
+    - attack.t1105
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_certutil:
+        Image|endswith: '\\certutil.exe'
+        CommandLine|contains:
+            - 'urlcache'
+            - 'verifyctl'
+    selection_bits:
+        Image|endswith: '\\bitsadmin.exe'
+        CommandLine|contains:
+            - '/transfer'
+            - '/addfile'
+    condition: 1 of selection_*
+falsepositives:
+    - Admin scripts fetching certificates
+level: high

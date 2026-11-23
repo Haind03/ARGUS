@@ -1,0 +1,25 @@
+title: Rclone Copy/Sync to Remote
+id: af6e6171-fe86-5cd3-ba6a-618b69247f03
+status: experimental
+description: ARGUS starter rule (defensive). Rclone Copy/Sync to Remote. Maps to MITRE ATT&CK T1567.002.
+author: ARGUS
+date: 2026-11-23
+tags:
+    - attack.exfiltration
+    - attack.t1567.002
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_img:
+        - Image|endswith: '\\rclone.exe'
+        - OriginalFileName: 'rclone.exe'
+    selection_cmd:
+        CommandLine|contains:
+            - ' copy '
+            - ' sync '
+            - ' move '
+    condition: selection_img and selection_cmd
+falsepositives:
+    - User's own rclone backups
+level: high

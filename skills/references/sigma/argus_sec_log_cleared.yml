@@ -1,0 +1,19 @@
+title: Security Event Log Cleared
+id: 1730a745-8355-5542-b04b-49a61a5d5412
+status: experimental
+description: ARGUS starter rule (defensive). Maps to MITRE ATT&CK T1070.001.
+author: ARGUS
+date: 2026-11-23
+tags:
+    - attack.defense_evasion
+    - attack.t1070.001
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 1102
+    condition: selection
+falsepositives:
+    - Cleaner utilities run intentionally
+level: high

@@ -1,0 +1,24 @@
+title: Svchost Running Outside System32
+id: 1996918f-aee7-5003-9093-ddd672f447e0
+status: experimental
+description: ARGUS starter rule (defensive). Svchost Running Outside System32. Maps to MITRE ATT&CK T1036.005.
+author: ARGUS
+date: 2026-11-23
+tags:
+    - attack.defense_evasion
+    - attack.t1036.005
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\\svchost.exe'
+    filter_legit:
+        Image|startswith:
+            - 'C:\\Windows\\System32\\'
+            - 'C:\\Windows\\SysWOW64\\'
+            - 'C:\\Windows\\WinSxS\\'
+    condition: selection and not filter_legit
+falsepositives:
+    - None
+level: high

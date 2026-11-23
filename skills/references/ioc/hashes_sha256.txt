@@ -1,0 +1,4 @@
+# ARGUS local SHA-256 IOC list (one per line, lowercase). Offline; populate with
+# python -I skills/threat-intel-enrichment/scripts/update_iocs.py --kind sha256 --from-file <export>
+# Example entry below is the SHA-256 of the EICAR test file (harmless AV test string), used by tests.
+275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f

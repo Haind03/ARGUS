@@ -1,0 +1,869 @@
+{
+  "out_of_host_scope": {
+    "TA0042": "Resource Development \u2014 attacker infrastructure; consume as threat-intel IOCs (domains/IPs) only.",
+    "TA0043": "Reconnaissance \u2014 happens on attacker infrastructure; at most visible as inbound scans in firewall logs."
+  },
+  "schema": "argus.ttp-index/1",
+  "techniques": {
+    "T1003.001": {
+      "name": "OS Credential Dumping: LSASS Memory",
+      "references": [
+        "skills/credential-access-hunting/references/T1003.001-os-credential-dumping-lsass-memory.md"
+      ],
+      "rules": [
+        "ARG-CA-001",
+        "ARG-DE-007",
+        "ARG-EX-004"
+      ],
+      "tactics": [
+        "TA0006"
+      ]
+    },
+    "T1003.002": {
+      "name": "OS Credential Dumping: Security Account Manager",
+      "references": [
+        "skills/credential-access-hunting/references/T1003.002-os-credential-dumping-security-account-manager.md"
+      ],
+      "rules": [
+        "ARG-CA-002"
+      ],
+      "tactics": [
+        "TA0006"
+      ]
+    },
+    "T1005": {
+      "name": "Data from Local System",
+      "references": [
+        "skills/collection-hunting/references/T1005-data-from-local-system.md"
+      ],
+      "rules": [
+        "ARG-CO-001"
+      ],
+      "tactics": [
+        "TA0009"
+      ]
+    },
+    "T1021.001": {
+      "name": "Remote Services: Remote Desktop Protocol",
+      "references": [
+        "skills/lateral-movement-hunting/references/T1021.001-remote-services-remote-desktop-protocol.md"
+      ],
+      "rules": [
+        "ARG-IA-005",
+        "ARG-LM-003"
+      ],
+      "tactics": [
+        "TA0008"
+      ]
+    },
+    "T1021.002": {
+      "name": "Remote Services: SMB/Windows Admin Shares",
+      "references": [
+        "skills/lateral-movement-hunting/references/T1021.002-remote-services-smb-windows-admin-shares.md"
+      ],
+      "rules": [
+        "ARG-LM-001",
+        "ARG-PE-004"
+      ],
+      "tactics": [
+        "TA0008"
+      ]
+    },
+    "T1021.006": {
+      "name": "Remote Services: Windows Remote Management",
+      "references": [
+        "skills/lateral-movement-hunting/references/T1021.006-remote-services-windows-remote-management.md"
+      ],
+      "rules": [
+        "ARG-LM-002"
+      ],
+      "tactics": [
+        "TA0008"
+      ]
+    },
+    "T1036.005": {
+      "name": "Masquerading: Match Legitimate Name or Location",
+      "references": [
+        "skills/defense-evasion-hunting/references/T1036.005-masquerading-match-legitimate-name-or-location.md"
+      ],
+      "rules": [
+        "ARG-DE-003"
+      ],
+      "tactics": [
+        "TA0005"
+      ]
+    },
+    "T1041": {
+      "name": "Exfiltration Over C2 Channel",
+      "references": [
+        "skills/exfiltration-hunting/references/T1041-exfiltration-over-c2-channel.md"
+      ],
+      "rules": [
+        "ARG-EF-002"
+      ],
+      "tactics": [
+        "TA0010"
+      ]
+    },
+    "T1047": {
+      "name": "Windows Management Instrumentation",
+      "references": [
+        "skills/execution-hunting/references/T1047-windows-management-instrumentation.md"
+      ],
+      "rules": [
+        "ARG-EX-004",
+        "ARG-EX-005"
+      ],
+      "tactics": [
+        "TA0002"
+      ]
+    },
+    "T1048": {
+      "name": "Exfiltration Over Alternative Protocol",
+      "references": [
+        "skills/exfiltration-hunting/references/T1048-exfiltration-over-alternative-protocol.md"
+      ],
+      "rules": [
+        "ARG-EF-001"
+      ],
+      "tactics": [
+        "TA0010"
+      ]
+    },
+    "T1053.005": {
+      "name": "Scheduled Task/Job: Scheduled Task (execution)",
+      "references": [
+        "skills/execution-hunting/references/T1053.005-scheduled-task-job-scheduled-task-execution.md",
+        "skills/persistence-hunting/references/T1053.005-scheduled-task-job-scheduled-task.md"
+      ],
+      "rules": [
+        "ARG-PE-002"
+      ],
+      "tactics": [
+        "TA0002",
+        "TA0003"
+      ]
+    },
+    "T1055": {
+      "name": "Process Injection",
+      "references": [
+        "skills/defense-evasion-hunting/references/T1055-process-injection.md"
+      ],
+      "rules": [
+        "ARG-DE-004"
+      ],
+      "tactics": [
+        "TA0005"
+      ]
+    },
+    "T1056.001": {
+      "name": "Input Capture: Keylogging (+T1113 Screen Capture, T1115 Clipboard Data)",
+      "references": [
+        "skills/collection-hunting/references/T1056.001-input-capture-keylogging-t1113-screen-capture-t1115-clipboar.md"
+      ],
+      "rules": [
+        "ARG-CO-003"
+      ],
+      "tactics": [
+        "TA0009"
+      ]
+    },
+    "T1059.001": {
+      "name": "Command and Scripting Interpreter: PowerShell",
+      "references": [
+        "skills/execution-hunting/references/T1059.001-command-and-scripting-interpreter-powershell.md"
+      ],
+      "rules": [
+        "ARG-EX-001",
+        "ARG-EX-002"
+      ],
+      "tactics": [
+        "TA0002"
+      ]
+    },
+    "T1059.003": {
+      "name": "Command and Scripting Interpreter: Windows Command Shell",
+      "references": [
+        "skills/execution-hunting/references/T1059.003-command-and-scripting-interpreter-windows-command-shell.md"
+      ],
+      "rules": [
+        "ARG-C2-002",
+        "ARG-IA-001"
+      ],
+      "tactics": [
+        "TA0002"
+      ]
+    },
+    "T1059.005": {
+      "name": "Command and Scripting Interpreter: Visual Basic",
+      "references": [
+        "skills/execution-hunting/references/T1059.005-command-and-scripting-interpreter-visual-basic.md"
+      ],
+      "rules": [
+        "ARG-EX-003"
+      ],
+      "tactics": [
+        "TA0002"
+      ]
+    },
+    "T1068": {
+      "name": "Exploitation for Privilege Escalation (BYOVD)",
+      "references": [
+        "skills/privesc-hunting/references/T1068-exploitation-for-privilege-escalation-byovd.md"
+      ],
+      "rules": [
+        "ARG-PR-002"
+      ],
+      "tactics": [
+        "TA0004"
+      ]
+    },
+    "T1070.001": {
+      "name": "Indicator Removal: Clear Windows Event Logs",
+      "references": [
+        "skills/defense-evasion-hunting/references/T1070.001-indicator-removal-clear-windows-event-logs.md"
+      ],
+      "rules": [
+        "ARG-DE-002"
+      ],
+      "tactics": [
+        "TA0005"
+      ]
+    },
+    "T1071.001": {
+      "name": "Application Layer Protocol: Web Protocols",
+      "references": [
+        "skills/c2-hunting/references/T1071.001-application-layer-protocol-web-protocols.md"
+      ],
+      "rules": [
+        "ARG-C2-001"
+      ],
+      "tactics": [
+        "TA0011"
+      ]
+    },
+    "T1074.001": {
+      "name": "Data Staged: Local Data Staging",
+      "references": [
+        "skills/collection-hunting/references/T1074.001-data-staged-local-data-staging.md"
+      ],
+      "rules": [
+        "ARG-CO-002"
+      ],
+      "tactics": [
+        "TA0009"
+      ]
+    },
+    "T1082": {
+      "name": "System Information Discovery (+T1016, T1033, T1087, T1069, T1049)",
+      "references": [
+        "skills/discovery-hunting/references/T1082-system-information-discovery-t1016-t1033-t1087-t1069-t1049.md"
+      ],
+      "rules": [
+        "ARG-DI-001"
+      ],
+      "tactics": [
+        "TA0007"
+      ]
+    },
+    "T1091": {
+      "name": "Replication Through Removable Media",
+      "references": [
+        "skills/initial-access-hunting/references/T1091-replication-through-removable-media.md"
+      ],
+      "rules": [
+        "ARG-IA-004"
+      ],
+      "tactics": [
+        "TA0001"
+      ]
+    },
+    "T1102": {
+      "name": "Web Service",
+      "references": [
+        "skills/c2-hunting/references/T1102-web-service.md"
+      ],
+      "rules": [
+        "ARG-C2-006"
+      ],
+      "tactics": [
+        "TA0011"
+      ]
+    },
+    "T1105": {
+      "name": "Ingress Tool Transfer",
+      "references": [
+        "skills/c2-hunting/references/T1105-ingress-tool-transfer.md"
+      ],
+      "rules": [
+        "ARG-C2-002",
+        "ARG-EX-004"
+      ],
+      "tactics": [
+        "TA0011"
+      ]
+    },
+    "T1110": {
+      "name": "Brute Force (password guessing/spraying)",
+      "references": [
+        "skills/credential-access-hunting/references/T1110-brute-force-password-guessing-spraying.md"
+      ],
+      "rules": [
+        "ARG-CA-005"
+      ],
+      "tactics": [
+        "TA0006"
+      ]
+    },
+    "T1112": {
+      "name": "Modify Registry (security policy)",
+      "references": [
+        "skills/defense-evasion-hunting/references/T1112-modify-registry-security-policy.md"
+      ],
+      "rules": [
+        "ARG-DE-007"
+      ],
+      "tactics": [
+        "TA0005"
+      ]
+    },
+    "T1133": {
+      "name": "External Remote Services",
+      "references": [
+        "skills/initial-access-hunting/references/T1133-external-remote-services.md"
+      ],
+      "rules": [
+        "ARG-CA-005",
+        "ARG-IA-005"
+      ],
+      "tactics": [
+        "TA0001"
+      ]
+    },
+    "T1135": {
+      "name": "Network Share Discovery / T1018 Remote System Discovery",
+      "references": [
+        "skills/discovery-hunting/references/T1135-network-share-discovery-t1018-remote-system-discovery.md"
+      ],
+      "rules": [
+        "ARG-DI-001"
+      ],
+      "tactics": [
+        "TA0007"
+      ]
+    },
+    "T1136.001": {
+      "name": "Create Account: Local Account (+T1098 admin group add)",
+      "references": [
+        "skills/persistence-hunting/references/T1136.001-create-account-local-account-t1098-admin-group-add.md"
+      ],
+      "rules": [
+        "ARG-PE-010"
+      ],
+      "tactics": [
+        "TA0003"
+      ]
+    },
+    "T1140": {
+      "name": "Deobfuscate/Decode Files or Information",
+      "references": [
+        "skills/defense-evasion-hunting/references/T1140-deobfuscate-decode-files-or-information.md"
+      ],
+      "rules": [
+        "ARG-EX-001",
+        "ARG-EX-004"
+      ],
+      "tactics": [
+        "TA0005"
+      ]
+    },
+    "T1176": {
+      "name": "Browser Extensions",
+      "references": [
+        "skills/persistence-hunting/references/T1176-browser-extensions.md"
+      ],
+      "rules": [
+        "ARG-PE-012"
+      ],
+      "tactics": [
+        "TA0003"
+      ]
+    },
+    "T1189": {
+      "name": "Drive-by Compromise",
+      "references": [
+        "skills/initial-access-hunting/references/T1189-drive-by-compromise.md"
+      ],
+      "rules": [
+        "ARG-IA-002"
+      ],
+      "tactics": [
+        "TA0001"
+      ]
+    },
+    "T1195.002": {
+      "name": "Supply Chain Compromise: Compromise Software Supply Chain",
+      "references": [
+        "skills/initial-access-hunting/references/T1195.002-supply-chain-compromise-compromise-software-supply-chain.md"
+      ],
+      "rules": [
+        "ARG-EX-006"
+      ],
+      "tactics": [
+        "TA0001"
+      ]
+    },
+    "T1197": {
+      "name": "BITS Jobs",
+      "references": [
+        "skills/persistence-hunting/references/T1197-bits-jobs.md"
+      ],
+      "rules": [
+        "ARG-PE-009"
+      ],
+      "tactics": [
+        "TA0003"
+      ]
+    },
+    "T1204": {
+      "name": "User Execution (from Temp/AppData)",
+      "references": [
+        "skills/execution-hunting/references/T1204-user-execution-from-temp-appdata.md"
+      ],
+      "rules": [
+        "ARG-EX-006"
+      ],
+      "tactics": [
+        "TA0002"
+      ]
+    },
+    "T1204.002": {
+      "name": "User Execution: Malicious File",
+      "references": [
+        "skills/initial-access-hunting/references/T1204.002-user-execution-malicious-file.md"
+      ],
+      "rules": [
+        "ARG-IA-003"
+      ],
+      "tactics": [
+        "TA0001"
+      ]
+    },
+    "T1218": {
+      "name": "System Binary Proxy Execution",
+      "references": [
+        "skills/execution-hunting/references/T1218-system-binary-proxy-execution.md",
+        "skills/defense-evasion-hunting/references/T1218-system-binary-proxy-execution-evasion.md"
+      ],
+      "rules": [
+        "ARG-EX-004"
+      ],
+      "tactics": [
+        "TA0002",
+        "TA0005"
+      ]
+    },
+    "T1219": {
+      "name": "Remote Access Software",
+      "references": [
+        "skills/c2-hunting/references/T1219-remote-access-software.md"
+      ],
+      "rules": [
+        "ARG-C2-004"
+      ],
+      "tactics": [
+        "TA0011"
+      ]
+    },
+    "T1485": {
+      "name": "Data Destruction",
+      "references": [
+        "skills/impact-hunting/references/T1485-data-destruction.md"
+      ],
+      "rules": [
+        "ARG-IM-005"
+      ],
+      "tactics": [
+        "TA0040"
+      ]
+    },
+    "T1486": {
+      "name": "Data Encrypted for Impact",
+      "references": [
+        "skills/impact-hunting/references/T1486-data-encrypted-for-impact.md"
+      ],
+      "rules": [
+        "ARG-IM-002"
+      ],
+      "tactics": [
+        "TA0040"
+      ]
+    },
+    "T1489": {
+      "name": "Service Stop",
+      "references": [
+        "skills/impact-hunting/references/T1489-service-stop.md"
+      ],
+      "rules": [
+        "ARG-IM-003"
+      ],
+      "tactics": [
+        "TA0040"
+      ]
+    },
+    "T1490": {
+      "name": "Inhibit System Recovery",
+      "references": [
+        "skills/impact-hunting/references/T1490-inhibit-system-recovery.md"
+      ],
+      "rules": [
+        "ARG-IM-001"
+      ],
+      "tactics": [
+        "TA0040"
+      ]
+    },
+    "T1496": {
+      "name": "Resource Hijacking (cryptomining)",
+      "references": [
+        "skills/impact-hunting/references/T1496-resource-hijacking-cryptomining.md"
+      ],
+      "rules": [
+        "ARG-IM-004"
+      ],
+      "tactics": [
+        "TA0040"
+      ]
+    },
+    "T1518.001": {
+      "name": "Software Discovery: Security Software Discovery",
+      "references": [
+        "skills/discovery-hunting/references/T1518.001-software-discovery-security-software-discovery.md"
+      ],
+      "rules": [
+        "ARG-DI-002"
+      ],
+      "tactics": [
+        "TA0007"
+      ]
+    },
+    "T1543.003": {
+      "name": "Create or Modify System Process: Windows Service",
+      "references": [
+        "skills/persistence-hunting/references/T1543.003-create-or-modify-system-process-windows-service.md",
+        "skills/privesc-hunting/references/T1543.003-create-or-modify-system-process-windows-service-as-system.md"
+      ],
+      "rules": [
+        "ARG-PE-003",
+        "ARG-PE-004"
+      ],
+      "tactics": [
+        "TA0003",
+        "TA0004"
+      ]
+    },
+    "T1546.003": {
+      "name": "Event Triggered Execution: WMI Event Subscription",
+      "references": [
+        "skills/persistence-hunting/references/T1546.003-event-triggered-execution-wmi-event-subscription.md"
+      ],
+      "rules": [
+        "ARG-PE-005"
+      ],
+      "tactics": [
+        "TA0003"
+      ]
+    },
+    "T1546.008": {
+      "name": "Event Triggered Execution: Accessibility Features",
+      "references": [
+        "skills/persistence-hunting/references/T1546.008-event-triggered-execution-accessibility-features.md",
+        "skills/privesc-hunting/references/T1546.008-accessibility-features-system-at-logon-screen.md"
+      ],
+      "rules": [
+        "ARG-PE-006"
+      ],
+      "tactics": [
+        "TA0003",
+        "TA0004"
+      ]
+    },
+    "T1546.010": {
+      "name": "Event Triggered Execution: AppInit DLLs (and T1546.009 AppCert DLLs)",
+      "references": [
+        "skills/persistence-hunting/references/T1546.010-event-triggered-execution-appinit-dlls-and-t1546-009-appcert.md"
+      ],
+      "rules": [
+        "ARG-PE-008"
+      ],
+      "tactics": [
+        "TA0003"
+      ]
+    },
+    "T1546.012": {
+      "name": "Event Triggered Execution: Image File Execution Options Injection",
+      "references": [
+        "skills/persistence-hunting/references/T1546.012-event-triggered-execution-image-file-execution-options-injec.md"
+      ],
+      "rules": [
+        "ARG-PE-006"
+      ],
+      "tactics": [
+        "TA0003"
+      ]
+    },
+    "T1546.015": {
+      "name": "Event Triggered Execution: Component Object Model Hijacking",
+      "references": [
+        "skills/persistence-hunting/references/T1546.015-event-triggered-execution-component-object-model-hijacking.md"
+      ],
+      "rules": [
+        "ARG-PE-011"
+      ],
+      "tactics": [
+        "TA0003"
+      ]
+    },
+    "T1547.001": {
+      "name": "Boot or Logon Autostart: Registry Run Keys / Startup Folder",
+      "references": [
+        "skills/persistence-hunting/references/T1547.001-boot-or-logon-autostart-registry-run-keys-startup-folder.md"
+      ],
+      "rules": [
+        "ARG-PE-001"
+      ],
+      "tactics": [
+        "TA0003"
+      ]
+    },
+    "T1547.004": {
+      "name": "Boot or Logon Autostart: Winlogon Helper DLL",
+      "references": [
+        "skills/persistence-hunting/references/T1547.004-boot-or-logon-autostart-winlogon-helper-dll.md"
+      ],
+      "rules": [
+        "ARG-PE-007"
+      ],
+      "tactics": [
+        "TA0003"
+      ]
+    },
+    "T1548.002": {
+      "name": "Abuse Elevation Control Mechanism: Bypass UAC",
+      "references": [
+        "skills/privesc-hunting/references/T1548.002-abuse-elevation-control-mechanism-bypass-uac.md"
+      ],
+      "rules": [
+        "ARG-PR-001"
+      ],
+      "tactics": [
+        "TA0004"
+      ]
+    },
+    "T1552.001": {
+      "name": "Unsecured Credentials: Credentials In Files (+T1555.004 Windows Credential Manager)",
+      "references": [
+        "skills/credential-access-hunting/references/T1552.001-unsecured-credentials-credentials-in-files-t1555-004-windows.md"
+      ],
+      "rules": [
+        "ARG-CA-004"
+      ],
+      "tactics": [
+        "TA0006"
+      ]
+    },
+    "T1555.003": {
+      "name": "Credentials from Password Stores: Credentials from Web Browsers",
+      "references": [
+        "skills/credential-access-hunting/references/T1555.003-credentials-from-password-stores-credentials-from-web-browse.md"
+      ],
+      "rules": [
+        "ARG-CA-003"
+      ],
+      "tactics": [
+        "TA0006"
+      ]
+    },
+    "T1560.001": {
+      "name": "Archive Collected Data: Archive via Utility",
+      "references": [
+        "skills/collection-hunting/references/T1560.001-archive-collected-data-archive-via-utility.md"
+      ],
+      "rules": [
+        "ARG-CO-001"
+      ],
+      "tactics": [
+        "TA0009"
+      ]
+    },
+    "T1562.001": {
+      "name": "Impair Defenses: Disable or Modify Tools",
+      "references": [
+        "skills/defense-evasion-hunting/references/T1562.001-impair-defenses-disable-or-modify-tools.md"
+      ],
+      "rules": [
+        "ARG-DE-001",
+        "ARG-DE-007"
+      ],
+      "tactics": [
+        "TA0005"
+      ]
+    },
+    "T1562.004": {
+      "name": "Impair Defenses: Disable or Modify System Firewall",
+      "references": [
+        "skills/defense-evasion-hunting/references/T1562.004-impair-defenses-disable-or-modify-system-firewall.md"
+      ],
+      "rules": [
+        "ARG-DE-005"
+      ],
+      "tactics": [
+        "TA0005"
+      ]
+    },
+    "T1564.001": {
+      "name": "Hide Artifacts: Hidden Files and Directories",
+      "references": [
+        "skills/defense-evasion-hunting/references/T1564.001-hide-artifacts-hidden-files-and-directories.md"
+      ],
+      "rules": [
+        "ARG-DE-006"
+      ],
+      "tactics": [
+        "TA0005"
+      ]
+    },
+    "T1565.001": {
+      "name": "Hosts file tampering (DNS redirection)",
+      "references": [
+        "skills/c2-hunting/references/T1565.001-hosts-file-tampering-dns-redirection.md"
+      ],
+      "rules": [
+        "ARG-C2-007"
+      ],
+      "tactics": [
+        "TA0011"
+      ]
+    },
+    "T1566.001": {
+      "name": "Phishing: Spearphishing Attachment",
+      "references": [
+        "skills/initial-access-hunting/references/T1566.001-phishing-spearphishing-attachment.md"
+      ],
+      "rules": [
+        "ARG-IA-001"
+      ],
+      "tactics": [
+        "TA0001"
+      ]
+    },
+    "T1566.002": {
+      "name": "Phishing: Spearphishing Link",
+      "references": [
+        "skills/initial-access-hunting/references/T1566.002-phishing-spearphishing-link.md"
+      ],
+      "rules": [
+        "ARG-IA-003"
+      ],
+      "tactics": [
+        "TA0001"
+      ]
+    },
+    "T1567": {
+      "name": "Exfiltration Over Web Service (webhooks)",
+      "references": [
+        "skills/exfiltration-hunting/references/T1567-exfiltration-over-web-service-webhooks.md"
+      ],
+      "rules": [
+        "ARG-C2-006"
+      ],
+      "tactics": [
+        "TA0010"
+      ]
+    },
+    "T1567.002": {
+      "name": "Exfiltration Over Web Service: Exfiltration to Cloud Storage",
+      "references": [
+        "skills/exfiltration-hunting/references/T1567.002-exfiltration-over-web-service-exfiltration-to-cloud-storage.md"
+      ],
+      "rules": [
+        "ARG-EF-001"
+      ],
+      "tactics": [
+        "TA0010"
+      ]
+    },
+    "T1568.002": {
+      "name": "Dynamic Resolution: Domain Generation Algorithms",
+      "references": [
+        "skills/c2-hunting/references/T1568.002-dynamic-resolution-domain-generation-algorithms.md"
+      ],
+      "rules": [
+        "ARG-C2-005"
+      ],
+      "tactics": [
+        "TA0011"
+      ]
+    },
+    "T1570": {
+      "name": "Lateral Tool Transfer",
+      "references": [
+        "skills/lateral-movement-hunting/references/T1570-lateral-tool-transfer.md"
+      ],
+      "rules": [
+        "ARG-LM-001"
+      ],
+      "tactics": [
+        "TA0008"
+      ]
+    },
+    "T1571": {
+      "name": "Non-Standard Port",
+      "references": [
+        "skills/c2-hunting/references/T1571-non-standard-port.md"
+      ],
+      "rules": [
+        "ARG-C2-001"
+      ],
+      "tactics": [
+        "TA0011"
+      ]
+    },
+    "T1572": {
+      "name": "Protocol Tunneling (+T1090 Proxy)",
+      "references": [
+        "skills/c2-hunting/references/T1572-protocol-tunneling-t1090-proxy.md"
+      ],
+      "rules": [
+        "ARG-C2-003"
+      ],
+      "tactics": [
+        "TA0011"
+      ]
+    },
+    "T1574.001": {
+      "name": "Hijack Execution Flow: DLL Search Order Hijacking / Side-Loading (T1574.002)",
+      "references": [
+        "skills/privesc-hunting/references/T1574.001-hijack-execution-flow-dll-search-order-hijacking-side-loadin.md"
+      ],
+      "rules": [
+        "ARG-PR-004"
+      ],
+      "tactics": [
+        "TA0004"
+      ]
+    },
+    "T1574.009": {
+      "name": "Hijack Execution Flow: Path Interception by Unquoted Path",
+      "references": [
+        "skills/privesc-hunting/references/T1574.009-hijack-execution-flow-path-interception-by-unquoted-path.md"
+      ],
+      "rules": [
+        "ARG-PR-003"
+      ],
+      "tactics": [
+        "TA0004"
+      ]
+    }
+  }
+}
