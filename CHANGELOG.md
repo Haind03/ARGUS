@@ -2,6 +2,13 @@
 
 ARGUS by HaiND from the Post and Telecommunication Institute of Technology.
 
+## v0.1.1 (2026-11-23)
+### Fixed
+- Windows checkouts corrupted the vendored YARA bundle (git treated it as text and rewrote line endings);
+  `.gitattributes` now marks it binary. A CI step compiles the bundle on Windows.
+- CI matrix: Python 3.10 and 3.13 (3.9 is no longer available on current runners); minimum Python is now 3.10.
+- PowerShell syntax check runs on every push, not only on release.
+
 ## v0.1.0 (2026-11-23)
 First public release.
 

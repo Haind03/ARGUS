@@ -1,0 +1,11 @@
+# Line endings: normalise text, never touch binaries.
+* text=auto
+*.ps1 text eol=crlf
+*.cmd text eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+*.bundle binary
+*.png binary
+*.whl binary
+*.zip binary
+*.gz binary

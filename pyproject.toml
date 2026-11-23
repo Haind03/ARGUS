@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "argus-defense"
-version = "0.1.0"
+version = "0.1.1"
 description = "ARGUS: detect-only threat hunting for your own Windows PC (MITRE ATT&CK). by HaiND from the Post and Telecommunication Institute of Technology"
 readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "HaiND", email = "haind03@users.noreply.github.com" }]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 keywords = ["threat-hunting", "dfir", "mitre-attack", "malware-detection", "yara", "blue-team"]
 classifiers = [
   "Programming Language :: Python :: 3",
