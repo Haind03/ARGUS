@@ -7,6 +7,8 @@
   Authorised use on your own machine only. Nothing is modified.
 #>
 param([string]$OutFile, [int]$MaxItems = 5000)
+$__argusBanner = Join-Path $PSScriptRoot '..\..\telemetry-collection\scripts\ArgusBanner.ps1'
+if (Test-Path -LiteralPath $__argusBanner) { . $__argusBanner }
 $ErrorActionPreference = 'Continue'
 $errs = New-Object System.Collections.Generic.List[string]
 function Rot13([string]$s) {

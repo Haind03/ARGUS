@@ -28,6 +28,8 @@ param(
   [switch]$Acquire,
   [switch]$AllowSystemDrive
 )
+$__argusBanner = Join-Path $PSScriptRoot '..\..\telemetry-collection\scripts\ArgusBanner.ps1'
+if (Test-Path -LiteralPath $__argusBanner) { . $__argusBanner }
 $ErrorActionPreference = 'Stop'
 $Refused = @('lsass', 'lsaiso', 'csrss', 'wininit', 'winlogon', 'smss', 'services', 'msmpeng', 'mssense', 'nissrv')
 

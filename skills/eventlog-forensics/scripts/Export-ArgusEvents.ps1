@@ -14,6 +14,8 @@ param(
   [int]$MaxPerId = 2000,
   [Parameter(Mandatory)][string]$OutFile
 )
+$__argusBanner = Join-Path $PSScriptRoot '..\..\telemetry-collection\scripts\ArgusBanner.ps1'
+if (Test-Path -LiteralPath $__argusBanner) { . $__argusBanner }
 $ids = @{
   'Security' = 1102, 4624, 4625, 4648, 4672, 4688, 4697, 4698, 4702, 4719, 4720, 4722, 4724, 4732, 4738, 4740, 4768, 4769, 4776, 5140, 5145
   'System' = 104, 7034, 7036, 7040, 7045

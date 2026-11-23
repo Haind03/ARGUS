@@ -38,6 +38,8 @@ param(
   [string]$ConsumerName,
   [switch]$Execute
 )
+$__argusBanner = Join-Path $PSScriptRoot '..\..\telemetry-collection\scripts\ArgusBanner.ps1'
+if (Test-Path -LiteralPath $__argusBanner) { . $__argusBanner }
 $ErrorActionPreference = 'Stop'
 $case = (Resolve-Path -LiteralPath $CaseDir).Path
 $meta = Get-Content -Raw -LiteralPath (Join-Path $case 'case.json') | ConvertFrom-Json

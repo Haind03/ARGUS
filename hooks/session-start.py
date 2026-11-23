@@ -21,5 +21,13 @@ ctx = (
     f"{dispatcher}\n"
     "</ARGUS-DEFENSIVE-MODE>"
 )[:9500]
-print(json.dumps({"hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": ctx}}))
+logo = ""
+try:
+    sys.path.insert(0, str(root / "engine"))
+    from argus.banner import text as _banner  # noqa: E402
+    logo = _banner()
+except Exception:
+    logo = "ARGUS\n  by HaiND from the Post and Telecommunication Institute of Technology\n"
+print(json.dumps({"systemMessage": logo,
+                  "hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": ctx}}))
 sys.exit(0)

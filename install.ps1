@@ -7,6 +7,8 @@
   powershell -NoProfile -ExecutionPolicy RemoteSigned -File .\install.ps1
 #>
 param([string]$Dest = (Join-Path $env:USERPROFILE '.claude'), [string]$Repo = 'https://github.com/haind03/argus')
+$__argusBanner = Join-Path $PSScriptRoot 'skills\telemetry-collection\scripts\ArgusBanner.ps1'
+if (Test-Path -LiteralPath $__argusBanner) { . $__argusBanner }
 $ErrorActionPreference = 'Stop'
 $src = $PSScriptRoot
 if (-not $src -or -not (Test-Path (Join-Path $src 'engine\argus_cli.py'))) {

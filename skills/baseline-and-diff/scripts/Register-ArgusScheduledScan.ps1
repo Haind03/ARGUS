@@ -15,6 +15,8 @@ param(
   [switch]$Register,
   [switch]$Unregister
 )
+$__argusBanner = Join-Path $PSScriptRoot '..\..\telemetry-collection\scripts\ArgusBanner.ps1'
+if (Test-Path -LiteralPath $__argusBanner) { . $__argusBanner }
 $taskPath = '\ARGUS\'; $taskName = 'ScheduledHunt'
 if ($Unregister) { Unregister-ScheduledTask -TaskName $taskName -TaskPath $taskPath -Confirm:$false; Write-Host 'Removed.'; return }
 

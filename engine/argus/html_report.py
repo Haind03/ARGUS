@@ -1,20 +1,23 @@
-"""Self-contained HTML dashboard for an ARGUS hunt result (no external assets, works offline).
+"""Self-contained HTML assessment report for an ARGUS hunt (no external assets, works offline).
 
+Editorial design, one typeface throughout: Times New Roman.
 ARGUS by HaiND from the Post and Telecommunication Institute of Technology
 """
 from __future__ import annotations
 
 import html
 import json
+import math
 from typing import Any
 
-from . import SIGNATURE
+from . import SIGNATURE, __version__
 from .rules import TACTICS, covered_techniques
 
 SEV = ["critical", "high", "medium", "low", "info"]
-COLORS = {"critical": "#d7191c", "high": "#f46d43", "medium": "#e6b800", "low": "#66bd63", "info": "#9e9e9e"}
+COLORS = {"critical": "#8b1a1a", "high": "#b5542a", "medium": "#a07d1c", "low": "#4f6f3a", "info": "#8a8578"}
 ORDER = ["TA0043", "TA0042", "TA0001", "TA0002", "TA0003", "TA0004", "TA0005", "TA0006", "TA0007", "TA0008",
          "TA0009", "TA0011", "TA0010", "TA0040"]
+BYLINE = "by HaiND from the Post and Telecommunication Institute of Technology"
 
 
 def e(x: Any) -> str:
@@ -23,17 +26,37 @@ def e(x: Any) -> str:
 
 def _verdict(sev: dict) -> tuple[str, str, str]:
     if sev.get("critical"):
-        return ("COMPROMISE LIKELY", "#d7191c", "Critical leads found. Validate now; isolate the network if ransomware or credential theft is confirmed.")
+        return ("Compromise likely", COLORS["critical"],
+                "Critical leads were found. Validate them first; isolate the network at once if ransomware or credential theft is confirmed.")
     if sev.get("high"):
-        return ("SUSPICIOUS", "#f46d43", "High-scoring leads need analyst validation before any conclusion.")
+        return ("Suspicious", COLORS["high"], "High-scoring leads require analyst validation before any conclusion is drawn.")
     if sev.get("medium") or sev.get("low"):
-        return ("REVIEW", "#e6b800", "Only low/medium leads. Compare with the baseline and known software.")
-    return ("NO INDICATORS", "#66bd63", "Nothing above threshold for the tested hypotheses. Check collection gaps.")
+        return ("Review advised", COLORS["medium"], "Only low or medium leads. Compare them with the baseline and with software the user knows.")
+    return ("No indicators", COLORS["low"], "Nothing exceeded the threshold for the tested hypotheses. Read the collection gaps before calling the host clean.")
 
 
 def _risk_index(findings: list[dict]) -> int:
     w = {"critical": 25, "high": 10, "medium": 4, "low": 1, "info": 0}
     return min(100, sum(w.get(f["severity"], 0) for f in findings))
+
+
+def _donut(sev: dict) -> str:
+    total = sum(sev.get(k, 0) for k in SEV)
+    r, c = 52, 2 * math.pi * 52
+    parts, off = [], 0.0
+    if total == 0:
+        parts.append(f'<circle r="{r}" cx="70" cy="70" fill="none" stroke="#d9d2c3" stroke-width="14"/>')
+    for k in SEV:
+        n = sev.get(k, 0)
+        if not n:
+            continue
+        ln = c * n / total
+        parts.append(f'<circle r="{r}" cx="70" cy="70" fill="none" stroke="{COLORS[k]}" stroke-width="14" '
+                     f'stroke-dasharray="{ln:.2f} {c - ln:.2f}" stroke-dashoffset="{-off:.2f}" transform="rotate(-90 70 70)"/>')
+        off += ln
+    return (f'<svg viewBox="0 0 140 140" class="donut">{"".join(parts)}'
+            f'<text x="70" y="68" text-anchor="middle" class="dn">{total}</text>'
+            f'<text x="70" y="88" text-anchor="middle" class="dl">findings</text></svg>')
 
 
 def render(result: dict[str, Any]) -> str:
@@ -47,80 +70,119 @@ def render(result: dict[str, Any]) -> str:
     for tech, tacs in cov.items():
         for t in tacs:
             cov_by_tactic[t].add(tech)
-    hit_by_tactic: dict[str, list] = {t: [] for t in TACTICS}
+    hits: dict[str, list] = {t: [] for t in TACTICS}
     for f in findings:
-        hit_by_tactic.setdefault(f["tactic"], []).append(f)
-    total = max(1, sum(sev.get(k, 0) for k in SEV))
+        hits.setdefault(f["tactic"], []).append(f)
 
-    bars = "".join(
-        f'<div class="bar"><span class="lbl">{k}</span><div class="track"><div class="fill" '
-        f'style="width:{100 * sev.get(k, 0) / total:.1f}%;background:{COLORS[k]}"></div></div>'
-        f'<span class="num">{sev.get(k, 0)}</span></div>' for k in SEV)
+    legend = "".join(f'<li><i style="background:{COLORS[k]}"></i>{k.capitalize()}<b>{sev.get(k, 0)}</b></li>' for k in SEV)
 
     cells = []
-    for t in ORDER:
-        name = TACTICS[t]
-        hits = hit_by_tactic.get(t, [])
-        ncov = len(cov_by_tactic.get(t, ()))
+    for i, t in enumerate(ORDER, 1):
+        h = hits.get(t, [])
         if t in ("TA0043", "TA0042"):
-            state, color, sub = "intel only", "#cfd8dc", "not host-observable"
-        elif hits:
-            top = max(hits, key=lambda f: f["score"])
-            state, color, sub = f"{len(hits)} finding(s)", COLORS[top["severity"]], f"top score {top['score']}"
+            state, color, sub = "Intelligence only", "#bfb6a3", "not observable on the host"
+        elif h:
+            top = max(h, key=lambda f: f["score"])
+            state, color, sub = f"{len(h)} finding{'s' if len(h) > 1 else ''}", COLORS[top["severity"]], f"highest score {top['score']}"
         else:
-            state, color, sub = "clear", "#c8e6c9", f"{ncov} technique(s) tested"
-        cells.append(f'<div class="tac" style="border-top:6px solid {color}"><div class="tid">{t}</div>'
-                     f'<div class="tname">{e(name)}</div><div class="tstate">{e(state)}</div><div class="tsub">{e(sub)}</div></div>')
+            state, color, sub = "Clear", "#4f6f3a", f"{len(cov_by_tactic.get(t, ()))} techniques tested"
+        cells.append(f'<div class="tac"><div class="num">{i:02d}</div><div class="tid">{t}</div>'
+                     f'<div class="tname">{e(TACTICS[t])}</div><div class="rule" style="background:{color}"></div>'
+                     f'<div class="tstate" style="color:{color}">{e(state)}</div><div class="tsub">{e(sub)}</div></div>')
 
     rows = []
-    for f in findings[:200]:
+    for n, f in enumerate(findings[:200], 1):
         a = f.get("artifact") or {}
         short = a.get("cmdline") or a.get("path") or a.get("value") or a.get("task") or a.get("service") or \
-            a.get("domain") or a.get("remote") or json.dumps(a)[:120]
-        disp = (f.get("disposition") or {}).get("verdict", "open")
-        sig = ", ".join(f.get("signals_matched", [])[:5])
+            a.get("domain") or a.get("remote") or json.dumps(a)[:140]
+        disp = (f.get("disposition") or {}).get("verdict", "open").replace("_", " ")
+        sig = ", ".join(x.replace("_", " ") for x in f.get("signals_matched", [])[:4])
         rows.append(
-            f'<tr><td><span class="pill" style="background:{COLORS[f["severity"]]}">{e(f["severity"])}</span></td>'
-            f'<td class="sc">{f["score"]}</td><td><code>{e(f["technique"])}</code></td><td>{e(f["title"])}</td>'
-            f'<td class="art"><code>{e(str(short)[:160])}</code></td><td class="sig">{e(sig)}</td><td>{e(disp)}</td></tr>')
+            f'<tr><td class="n">{n}</td><td><span class="sev" style="color:{COLORS[f["severity"]]};border-color:{COLORS[f["severity"]]}">'
+            f'{e(f["severity"])}</span></td><td class="sc">{f["score"]}</td><td class="tech">{e(f["technique"])}</td>'
+            f'<td><div class="ft">{e(f["title"])}</div><div class="art">{e(str(short)[:170])}</div>'
+            f'<div class="sig">{e(sig)}</div></td><td class="disp">{e(disp)}</td></tr>')
     gaps = result.get("collection_gaps") or []
-    gaps_html = "".join(f"<li>{e(g)}</li>" for g in gaps) or "<li>none reported by collector</li>"
+    gaps_html = "".join(f"<li>{e(g)}</li>" for g in gaps) or "<li>None reported by the collector.</li>"
     intel = result.get("intel") or {}
-    online = "ON (SHA-256 only)" if intel.get("online_enabled") else "OFF (offline)"
+    online = "online, SHA-256 only" if intel.get("online_enabled") else "offline"
+    tactics_tested = len({t for v in cov.values() for t in v})
 
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ARGUS hunt dashboard</title><style>
-:root{{--bg:#0f1720;--card:#16212c;--ink:#e6edf3;--mut:#8b9bb0;--line:#243241}}
-*{{box-sizing:border-box}}body{{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 "Segoe UI",system-ui,sans-serif}}
-header{{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:1px solid var(--line)}}
-h1{{margin:0;font-size:20px;letter-spacing:.5px}}h1 b{{color:#4fc3f7}}.meta{{color:var(--mut);font-size:12px;text-align:right}}
-main{{padding:22px 28px;display:grid;gap:18px}}.grid{{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:18px}}
-.card{{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px}}
-.card h2{{margin:0 0 10px;font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:1px}}
-.verdict{{font-size:24px;font-weight:700}}.big{{font-size:40px;font-weight:700}}.mut{{color:var(--mut);font-size:12px}}
-.gauge{{height:10px;background:#243241;border-radius:5px;overflow:hidden;margin-top:8px}}.gauge div{{height:100%}}
-.bar{{display:flex;align-items:center;gap:8px;margin:6px 0}}.lbl{{width:62px;color:var(--mut)}}.track{{flex:1;height:12px;background:#243241;border-radius:6px;overflow:hidden}}
-.fill{{height:100%}}.num{{width:28px;text-align:right}}
-.tactics{{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}}.tac{{background:#1b2835;border-radius:8px;padding:10px;min-height:96px}}
-.tid{{font-size:11px;color:var(--mut)}}.tname{{font-weight:600;margin:2px 0 6px}}.tstate{{font-size:13px}}.tsub{{font-size:11px;color:var(--mut)}}
-table{{width:100%;border-collapse:collapse;font-size:13px}}th,td{{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}}
-th{{color:var(--mut);font-weight:600}}.pill{{padding:2px 8px;border-radius:10px;color:#111;font-weight:700;font-size:11px;text-transform:uppercase}}
-.sc{{font-weight:700}}.art code{{color:#ffcc80;word-break:break-all}}.sig{{color:var(--mut);font-size:12px}}code{{font-family:Consolas,monospace}}
-footer{{padding:14px 28px;color:var(--mut);font-size:12px;border-top:1px solid var(--line)}}
-</style></head><body>
-<header><h1><b>ARGUS</b> hunt dashboard</h1><div class="meta">host <b>{e(result.get('target_host'))}</b> &middot; preset {e(result.get('preset'))}
-&middot; baseline {e(result.get('baseline_applied'))}<br>generated {e(result.get('generated_at'))} &middot; mode <b>{e(result.get('mode'))}</b> &middot; intel {online}</div></header>
-<main>
-<div class="grid">
- <div class="card"><h2>System assessment</h2><div class="verdict" style="color:{vcolor}">{verdict}</div><div class="mut">{e(vtext)}</div>
-  <div class="gauge"><div style="width:{risk}%;background:{vcolor}"></div></div><div class="mut">risk index {risk}/100</div></div>
- <div class="card"><h2>Findings</h2><div class="big">{s.get('total', 0)}</div><div class="mut">top score {s.get('top_score', 0)}</div></div>
- <div class="card"><h2>ATT&amp;CK coverage</h2><div class="big">{len(cov)}</div><div class="mut">techniques tested across {len({t for v in cov.values() for t in v})} tactics</div></div>
- <div class="card"><h2>Severity</h2>{bars}</div>
-</div>
-<div class="card"><h2>Kill chain (MITRE ATT&amp;CK Enterprise)</h2><div class="tactics">{''.join(cells)}</div></div>
-<div class="card"><h2>Findings (validate before acting)</h2><table><tr><th>Severity</th><th>Score</th><th>ATT&amp;CK</th><th>Title</th><th>Artifact</th><th>Signals</th><th>Disposition</th></tr>
-{''.join(rows) or '<tr><td colspan=7>No findings above threshold.</td></tr>'}</table></div>
-<div class="card"><h2>Collection gaps</h2><ul>{gaps_html}</ul></div>
-</main><footer>Detect-only report for the user's own, authorised machine. Scores are heuristic leads, not verdicts. &middot; {e(SIGNATURE)}</footer>
-</body></html>"""
+<title>ARGUS Assessment Report</title><style>
+:root{{--paper:#fbf8f1;--ink:#1d2433;--soft:#5b6170;--line:#d9d2c3;--accent:#1f3a5f;--gold:#9c7a2b}}
+*{{box-sizing:border-box}}
+html,body,button,input,table,pre,code{{font-family:"Times New Roman",Times,serif}}
+body{{margin:0;background:var(--paper);color:var(--ink);font-size:16px;line-height:1.5}}
+.wrap{{max-width:1180px;margin:0 auto;padding:44px 48px 28px}}
+.mast{{text-align:center;border-bottom:3px double var(--ink);padding-bottom:22px}}
+.kicker{{letter-spacing:.32em;text-transform:uppercase;font-size:12px;color:var(--soft)}}
+.word{{font-size:76px;letter-spacing:.42em;margin:6px 0 2px;padding-left:.42em;font-weight:700;color:var(--accent);line-height:1}}
+.byline{{font-style:italic;color:var(--gold);font-size:17px}}
+.meta{{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-top:14px;font-size:14px;color:var(--soft)}}
+.meta b{{color:var(--ink);font-weight:600}}
+h2{{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--soft);font-weight:600;margin:0 0 14px;
+  border-bottom:1px solid var(--line);padding-bottom:6px}}
+section{{margin-top:34px}}
+.lead{{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;align-items:start}}
+.verdict{{font-size:42px;line-height:1.1;margin:2px 0 10px}}
+.verdict-text{{font-size:17px;color:var(--soft);max-width:520px}}
+.risk{{margin-top:16px}}.risk .track{{height:6px;background:var(--line)}}.risk .fill{{height:6px}}
+.risk .lbl{{font-size:13px;color:var(--soft);margin-top:6px;letter-spacing:.06em}}
+.stat .big{{font-size:56px;line-height:1}}.stat .cap{{color:var(--soft);font-size:14px;font-style:italic}}
+.stat + .stat{{margin-top:18px}}
+.donutbox{{display:flex;gap:18px;align-items:center}}.donut{{width:140px;height:140px}}
+.dn{{font-size:30px;fill:var(--ink)}}.dl{{font-size:12px;fill:var(--soft);letter-spacing:.1em}}
+.legend{{list-style:none;margin:0;padding:0;font-size:15px}}.legend li{{display:flex;align-items:center;gap:8px;margin:3px 0}}
+.legend i{{width:10px;height:10px;display:inline-block}}.legend b{{margin-left:auto;padding-left:16px;font-weight:600}}
+.tactics{{display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}}
+.tac{{padding:12px 12px 14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:150px;background:#fffdf8}}
+.tac .num{{font-size:12px;color:var(--gold);letter-spacing:.1em}}.tac .tid{{font-size:12px;color:var(--soft)}}
+.tac .tname{{font-size:17px;line-height:1.2;margin:4px 0 10px;min-height:42px}}.tac .rule{{height:2px;width:36px;margin-bottom:8px}}
+.tac .tstate{{font-size:15px;font-weight:600}}.tac .tsub{{font-size:13px;color:var(--soft);font-style:italic}}
+table{{width:100%;border-collapse:collapse}}th{{text-align:left;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);
+  font-weight:600;border-bottom:1px solid var(--ink);padding:8px 10px}}
+td{{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}}
+td.n{{color:var(--gold);width:34px}}td.sc{{font-size:22px;width:56px}}td.tech{{white-space:nowrap;width:96px}}
+.sev{{border:1px solid;padding:1px 8px;font-size:12px;letter-spacing:.16em;text-transform:uppercase}}
+.ft{{font-size:17px}}.art{{color:var(--accent);font-size:14.5px;word-break:break-all;margin-top:3px}}
+.sig{{font-size:13px;color:var(--soft);font-style:italic;margin-top:3px}}td.disp{{font-style:italic;color:var(--soft);width:96px}}
+.gaps li{{margin:4px 0}}
+.note{{font-size:14px;color:var(--soft);font-style:italic}}
+footer{{margin-top:40px;border-top:3px double var(--ink);padding-top:14px;text-align:center;font-size:14px;color:var(--soft)}}
+footer .sig2{{font-style:italic;color:var(--gold);font-size:15px}}
+@media print{{body{{background:#fff}}.tac{{background:#fff}}}}
+</style></head><body><div class="wrap">
+<header class="mast">
+  <div class="kicker">Defensive threat hunting &middot; Assessment report</div>
+  <div class="word">ARGUS</div>
+  <div class="byline">{e(BYLINE)}</div>
+  <div class="meta"><span>Host <b>{e(result.get('target_host'))}</b></span><span>Generated <b>{e(result.get('generated_at'))}</b></span>
+  <span>Preset <b>{e(result.get('preset'))}</b></span><span>Baseline <b>{'applied' if result.get('baseline_applied') else 'none'}</b></span>
+  <span>Mode <b>{e(result.get('mode'))}</b></span><span>Intelligence <b>{online}</b></span></div>
+</header>
+
+<section class="lead">
+  <div><h2>System assessment</h2>
+    <div class="verdict" style="color:{vcolor}">{verdict}</div>
+    <div class="verdict-text">{e(vtext)}</div>
+    <div class="risk"><div class="track"><div class="fill" style="width:{risk}%;background:{vcolor}"></div></div>
+    <div class="lbl">Risk index {risk} of 100</div></div></div>
+  <div><h2>Severity</h2><div class="donutbox">{_donut(sev)}<ul class="legend">{legend}</ul></div></div>
+  <div><h2>Coverage</h2>
+    <div class="stat"><div class="big">{len(cov)}</div><div class="cap">ATT&amp;CK techniques tested</div></div>
+    <div class="stat"><div class="big">{tactics_tested}</div><div class="cap">host-observable tactics</div></div></div>
+</section>
+
+<section><h2>Kill chain, MITRE ATT&amp;CK Enterprise</h2><div class="tactics">{''.join(cells)}</div></section>
+
+<section><h2>Findings</h2>
+<p class="note">Scores are heuristic leads, not verdicts. Validate every finding before acting.</p>
+<table><tr><th>#</th><th>Severity</th><th>Score</th><th>ATT&amp;CK</th><th>Finding, artefact and signals</th><th>Disposition</th></tr>
+{''.join(rows) or '<tr><td colspan=6 class="note">No findings above the threshold.</td></tr>'}</table></section>
+
+<section><h2>Collection gaps</h2><ul class="gaps">{gaps_html}</ul></section>
+
+<footer>Detect-only report for the user's own, authorised machine. ARGUS v{e(__version__)}.<br>
+<span class="sig2">{e(SIGNATURE)}</span></footer>
+</div></body></html>"""

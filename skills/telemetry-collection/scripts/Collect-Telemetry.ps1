@@ -38,6 +38,8 @@ param(
   [int]$MaxFiles = 20000,
   [switch]$HashProcesses
 )
+$__argusBanner = Join-Path $PSScriptRoot 'ArgusBanner.ps1'
+if (Test-Path -LiteralPath $__argusBanner) { . $__argusBanner }
 
 Set-StrictMode -Version 2
 $ErrorActionPreference = 'Continue'

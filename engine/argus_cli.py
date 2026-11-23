@@ -20,7 +20,7 @@ if str(ENGINE_DIR) not in sys.path:
 
 from argus import __version__  # noqa: E402
 from argus import baseline as bl  # noqa: E402
-from argus import guard, harness, html_report, intel, report, triage  # noqa: E402
+from argus import banner, guard, harness, html_report, intel, report, triage  # noqa: E402
 from argus.hunt import build_result, filter_severity, run_rules  # noqa: E402
 from argus.rules import RULES, TACTICS  # noqa: E402
 from argus.safeio import load_json, safe_child, safe_input_file, safe_output_dir, write_json, write_text  # noqa: E402
@@ -313,6 +313,8 @@ def main(argv=None) -> int:
     g.add_argument("--case")
     g.set_defaults(fn=cmd_guard)
     a = ap.parse_args(argv)
+    if a.cmd != "guard":
+        banner.show(__version__)
     try:
         return a.fn(a)
     except (ValueError, OSError) as exc:

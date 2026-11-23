@@ -1,5 +1,16 @@
 # ARGUS: defensive threat hunting for Claude Code
 
+```text
+     ___      .______        _______  __    __       _______.
+    /   \     |   _  \      /  _____||  |  |  |     /       |
+   /  ^  \    |  |_)  |    |  |  __  |  |  |  |    |   (----`
+  /  /_\  \   |      /     |  | |_ | |  |  |  |     \   \
+ /  _____  \  |  |\  \----.|  |__| | |  `--'  | .----)   |
+/__/     \__\ | _| `._____| \______|  \______/  |_______/
+  defensive threat hunting  |  detect-only  |  MITRE ATT&CK
+  by HaiND from the Post and Telecommunication Institute of Technology
+```
+
 **Author:** by HaiND from the Post and Telecommunication Institute of Technology
 
 **ARGUS** (`defensive-claude`) is the defensive counterpart of offensive skill packs: a set of Claude Code

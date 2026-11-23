@@ -7,6 +7,8 @@
   .\Start-ArgusPacketCapture.ps1 -Minutes 15 -OutDir E:\case01\net -Capture
 #>
 param([int]$Minutes = 10, [Parameter(Mandatory)][string]$OutDir, [int]$PacketSize = 256, [switch]$Capture)
+$__argusBanner = Join-Path $PSScriptRoot '..\..\telemetry-collection\scripts\ArgusBanner.ps1'
+if (Test-Path -LiteralPath $__argusBanner) { . $__argusBanner }
 $etl = Join-Path $OutDir ("pktmon-{0}.etl" -f (Get-Date -Format yyyyMMdd-HHmmss))
 $pcap = [IO.Path]::ChangeExtension($etl, '.pcapng')
 Write-Host "Plan: pktmon start --capture --pkt-size $PacketSize (headers + first $PacketSize bytes) for $Minutes min -> $pcap"

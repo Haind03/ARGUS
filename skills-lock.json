@@ -3,7 +3,7 @@
   "skills": {
     "baseline-and-diff": {
       "path": "skills/baseline-and-diff",
-      "sha256": "1963a55edac5658a7bc10a7ab83058760634c0dea345ec1378e1bd5a0bdf6003",
+      "sha256": "7e667be7c9fb828d731f93ef7dd73be5a3045fa7bdf4a26c58c2973330b9e30a",
       "files": 6
     },
     "browser-forensics": {
@@ -38,12 +38,12 @@
     },
     "disk-forensics": {
       "path": "skills/disk-forensics",
-      "sha256": "ad3e60bb216497a866be8e15147656d4087625ab0121ccc89fec0d6a7163220f",
+      "sha256": "f327e4553668f3e06c55162f10c9e24b0f31e88cc0f60693df793795574b24af",
       "files": 5
     },
     "eventlog-forensics": {
       "path": "skills/eventlog-forensics",
-      "sha256": "c081e32ca6ee8a3b5632fd0b78cd7302db044455e262ed93a183789c9405e479",
+      "sha256": "17c9c99c290c1a6e53d06482138621511831a5532a9bf3fb7f076632e4b84048",
       "files": 4
     },
     "evidence-discipline": {
@@ -78,7 +78,7 @@
     },
     "incident-response": {
       "path": "skills/incident-response",
-      "sha256": "033e54b37e6433cdc8d192be31fc6d3cbc8a66c854e09aef5e9937f17b850c98",
+      "sha256": "be433176e2b0f9d31aa5dfbad1d8cf689b92f233867c4232fb2d7517744e0197",
       "files": 5
     },
     "initial-access-hunting": {
@@ -98,7 +98,7 @@
     },
     "memory-acquisition": {
       "path": "skills/memory-acquisition",
-      "sha256": "adf2fc7ec5322c10dbd54c85380bd805fa7ba649cec6490995ff45acdd573d07",
+      "sha256": "e758a846d2667325d5d71dfa739c2aec4f4c0d7698f5915bee4cee69cc597fec",
       "files": 4
     },
     "memory-forensics": {
@@ -108,7 +108,7 @@
     },
     "network-forensics": {
       "path": "skills/network-forensics",
-      "sha256": "81beeebd114a6fc3e7ee5e61a30ef706c8d669b0c1c18521b830df917e43bcca",
+      "sha256": "8459b0fe1d7e44556b1f1d91ac0f06d4e64b0067d22e4e9c90e76e619600a80d",
       "files": 4
     },
     "persistence-hunting": {
@@ -143,8 +143,8 @@
     },
     "telemetry-collection": {
       "path": "skills/telemetry-collection",
-      "sha256": "025e29c4b2beeeb22532ae53619f3e9eb85dc77f8ec91296928516b266f567c1",
-      "files": 9
+      "sha256": "48d1348b4b53cd9b33a34d2f5b3bc4efa0256459407d520d93c356b63b21bd8b",
+      "files": 10
     },
     "threat-intel-enrichment": {
       "path": "skills/threat-intel-enrichment",

@@ -109,5 +109,7 @@ def test_pre_tool_hook_denies_destructive():
 def test_session_start_hook_injects_dispatcher():
     p = subprocess.run([sys.executable, "-I", str(ROOT / "hooks" / "session-start.py")], capture_output=True,
                        text=True, timeout=30)
-    ctx = json.loads(p.stdout)["hookSpecificOutput"]["additionalContext"]
+    out = json.loads(p.stdout)
+    assert "Post and Telecommunication Institute of Technology" in out["systemMessage"]
+    ctx = out["hookSpecificOutput"]["additionalContext"]
     assert "using-argus" in ctx and len(ctx) <= 10000

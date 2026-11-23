@@ -10,6 +10,8 @@ param(
   [string]$DataRoot = (Join-Path $env:ProgramData 'ARGUS'),
   [int]$KeepTelemetry = 30
 )
+$__argusBanner = Join-Path $PSScriptRoot '..\..\telemetry-collection\scripts\ArgusBanner.ps1'
+if (Test-Path -LiteralPath $__argusBanner) { . $__argusBanner }
 $ErrorActionPreference = 'Stop'
 $tel = Join-Path $DataRoot 'telemetry'; $rep = Join-Path $DataRoot 'reports'; $base = Join-Path $DataRoot 'baseline'
 New-Item -ItemType Directory -Force -Path $tel, $rep, $base | Out-Null
