@@ -10,7 +10,9 @@ ROOT = Path(__file__).resolve().parent.parent
 
 def digest(d: Path) -> str:
     h = hashlib.sha256()
-    for f in sorted(p for p in d.rglob("*") if p.is_file() and "__pycache__" not in p.parts):
+    # sort by POSIX string: WindowsPath ordering is case-insensitive and would change the digest
+    files = [p for p in d.rglob("*") if p.is_file() and "__pycache__" not in p.parts]
+    for f in sorted(files, key=lambda x: x.relative_to(d).as_posix()):
         h.update(f.relative_to(d).as_posix().encode() + b"\0")
         h.update(f.read_bytes().replace(b"\r\n", b"\n"))
     return h.hexdigest()
