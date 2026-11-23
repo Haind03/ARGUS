@@ -1,5 +1,5 @@
 ---
-description: Static triage of a suspicious file (never executed) — hashes, PE, entropy, strings, YARA, offline IOCs
+description: Static triage of a suspicious file (never executed), hashes, PE, entropy, strings, YARA, offline IOCs
 argument-hint: "<path-to-file> [--online]"
 ---
 

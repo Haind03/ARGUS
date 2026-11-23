@@ -5,7 +5,7 @@
 
 The live SQLite databases are locked by the browser, so each DB is first COPIED into the case folder
 and opened read-only from the copy (`mode=ro` URI). Nothing in the profile is modified.
-Privacy: history is personal data — only summaries and flagged rows go into the findings file.
+Privacy: history is personal data, only summaries and flagged rows go into the findings file.
 """
 from __future__ import annotations
 

@@ -1,4 +1,5 @@
 <#
+  ARGUS by HaiND from the Post and Telecommunication Institute of Technology
 .SYNOPSIS
   OPT-IN memory acquisition for the user's own machine, using external SIGNED tools only:
   full RAM via WinPmem, or one process via Sysinternals ProcDump. Default = DRY RUN.

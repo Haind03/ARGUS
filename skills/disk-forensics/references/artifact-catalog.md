@@ -3,12 +3,12 @@
 | Artefact | Proves | Location | Parser | Notes |
 |---|---|---|---|---|
 | Prefetch | execution, run count, last 8 run times, files loaded | `C:\Windows\Prefetch\*.pf` | PECmd | disabled on some SSD configs; 1024 files max |
-| Amcache.hve | presence + SHA-1 of executed/installed binaries | `C:\Windows\AppCompat\Programs\Amcache.hve` | AmcacheParser | SHA-1 survives file deletion — great for intel lookups |
+| Amcache.hve | presence + SHA-1 of executed/installed binaries | `C:\Windows\AppCompat\Programs\Amcache.hve` | AmcacheParser | SHA-1 survives file deletion, great for intel lookups |
 | ShimCache (AppCompatCache) | file existed / maybe executed; ordering | `HKLM\SYSTEM\...\AppCompatCache` | AppCompatCacheParser | written at shutdown; no exec proof on Win10 |
 | BAM/DAM | last execution per user | `HKLM\SYSTEM\...\Services\bam\State\UserSettings\<SID>` | collector | ~7 days retention |
 | UserAssist | GUI program launches (ROT13), count, last run | `HKCU\...\Explorer\UserAssist` | collector | user-interactive only |
 | LNK / Jump Lists | files/folders opened, original paths, volume serial | `%APPDATA%\Microsoft\Windows\Recent` | LECmd / JLECmd | shows opened documents from USB/network |
-| ShellBags | folders browsed (incl. deleted/USB) | NTUSER.DAT / UsrClass.dat | SBECmd | — |
+| ShellBags | folders browsed (incl. deleted/USB) | NTUSER.DAT / UsrClass.dat | SBECmd | n/a |
 | Recycle Bin | deleted file original path + time | `$Recycle.Bin\<SID>\$I*` | collector / RBCmd | `$R*` holds content |
 | SRUM | per-app network bytes, CPU, energy (30-60 days) | `C:\Windows\System32\sru\SRUDB.dat` | SrumECmd | **exfil evidence (bytes sent per app)** |
 | $MFT | every file record, MACB times, deleted entries | NTFS `$MFT` | MFTECmd | timestomping: $SI vs $FN mismatch (T1070.006) |

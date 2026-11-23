@@ -79,7 +79,7 @@ def hunt(a: dict) -> tuple[list[Finding], list[dict]]:
             seen.add(key)
             f = Finding("ARG-DF-001", "Execution evidence of suspicious binary", "TA0002", "T1204.002",
                         {"source": src, "name": name, "path": path, "time": t}, key, sigs,
-                        "Recover the binary (or confirm it was deleted — check recycle/USN) and triage it.").finalize()
+                        "Recover the binary (or confirm it was deleted, check recycle/USN) and triage it.").finalize()
             if f.score >= 20:
                 findings.append(f)
     for r in a.get("recycle") or []:

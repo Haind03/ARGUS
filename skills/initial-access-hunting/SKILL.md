@@ -37,7 +37,7 @@ or directly when a lead points at this tactic.
 
 ## Output
 Each finding: `artifact`, `technique`, `signals_matched`, `score` (0-100), `severity`, `action`
-(recommended analyst action). Scores are heuristic — never report a finding as confirmed without validation.
+(recommended analyst action). Scores are heuristic, never report a finding as confirmed without validation.
 
 ## Hand-off
 - Confirmed malicious → `incident-response` (opt-in only), `malware-triage` for the binary.

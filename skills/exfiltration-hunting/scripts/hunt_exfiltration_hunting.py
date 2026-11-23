@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exfiltration (TA0010) detector — thin wrapper over the ARGUS engine. Run with: python -I exfiltration_hunting.py"""
+"""Exfiltration (TA0010) detector, thin wrapper over the ARGUS engine. Run with: python -I exfiltration_hunting.py"""
 import sys
 from pathlib import Path
 

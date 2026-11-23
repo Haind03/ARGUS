@@ -9,4 +9,4 @@
 - [ ] User recognises it? ____
 - [ ] Second, independent indicator? (other tactic, network, memory) ____
 - [ ] Intel (offline IOC / opt-in hash lookup): ____
-- [ ] Verdict: TP / FP / benign_expected / needs_more_data — reason: ____
+- [ ] Verdict: TP / FP / benign_expected / needs_more_data, reason: ____

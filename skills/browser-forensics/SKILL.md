@@ -1,11 +1,11 @@
 ---
 name: browser-forensics
-description: Use when the infection vector may be the web browser on the user's own PC — risky downloads (EXE/ISO/LNK/JS, double extensions, fake browser updates, raw-IP or paste/tunnel hosts), visits to malicious infrastructure, rogue extensions, or infostealer exposure of saved passwords/cookies — for Chrome, Edge, Brave, Vivaldi, Opera and Firefox.
+description: Use when the infection vector may be the web browser on the user's own PC, risky downloads (EXE/ISO/LNK/JS, double extensions, fake browser updates, raw-IP or paste/tunnel hosts), visits to malicious infrastructure, rogue extensions, or infostealer exposure of saved passwords/cookies, for Chrome, Edge, Brave, Vivaldi, Opera and Firefox.
 ---
 
 # Browser forensics
 
-> **Scope:** the user's own browser profiles, with their consent — history is personal data. The
+> **Scope:** the user's own browser profiles, with their consent, history is personal data. The
 > script copies the SQLite DBs into the case folder and reads the copies **read-only**; only flagged
 > rows and counts go into findings.
 

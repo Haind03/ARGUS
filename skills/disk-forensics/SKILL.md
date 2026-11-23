@@ -1,6 +1,6 @@
 ---
 name: disk-forensics
-description: Use when you need to prove WHAT RAN and WHEN on the user's own Windows PC, even after malware deleted itself — Prefetch, BAM/DAM, UserAssist, Amcache, ShimCache, LNK/Jump Lists, Recycle Bin, USB history, SRUM, $MFT/USN journal — and build an execution timeline.
+description: Use when you need to prove WHAT RAN and WHEN on the user's own Windows PC, even after malware deleted itself, Prefetch, BAM/DAM, UserAssist, Amcache, ShimCache, LNK/Jump Lists, Recycle Bin, USB history, SRUM, $MFT/USN journal, and build an execution timeline.
 ---
 
 # Disk & execution-artefact forensics
@@ -21,5 +21,5 @@ Findings: `ARG-DF-001` execution of suspicious binary (user path, attacker tool 
 `ARG-DF-002` deleted executable in Recycle Bin. Output also `execution-timeline.json`.
 
 ## Deep pass (offline parsers)
-[artifact-catalog.md](references/artifact-catalog.md) — what each artefact proves, location, parser, retention.
-[timeline-method.md](references/timeline-method.md) — super-timeline + pivoting around the first malicious event.
+[artifact-catalog.md](references/artifact-catalog.md), what each artefact proves, location, parser, retention.
+[timeline-method.md](references/timeline-method.md), super-timeline + pivoting around the first malicious event.

@@ -2,7 +2,7 @@
 
 Defender and other AV products statically scan every file on disk, including **text** files. A YARA
 or test file that contains the literal strings of a hacking tool, ransom note or download cradle can be
-quarantined as `HackTool:` / `Trojan:Script` — breaking the toolkit and alarming the user.
+quarantined as `HackTool:` / `Trojan:Script`, breaking the toolkit and alarming the user.
 
 ARGUS conventions:
 | Content | Do | Don't |

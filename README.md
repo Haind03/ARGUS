@@ -1,4 +1,6 @@
-# ARGUS — defensive threat hunting for Claude Code
+# ARGUS: defensive threat hunting for Claude Code
+
+**Author:** by HaiND from the Post and Telecommunication Institute of Technology
 
 **ARGUS** (`defensive-claude`) is the defensive counterpart of offensive skill packs: a set of Claude Code
 skills, a Python scoring engine and read-only PowerShell collectors that **hunt malware on your own Windows
@@ -17,8 +19,29 @@ ATT&CK Navigator layer, and wraps everything in a safety harness.
 - **Privacy**: threat intel is offline by default; VirusTotal / MalwareBazaar lookups are opt-in and send SHA-256 only.
 - **AV-safe by construction**: no payload-like literals on disk (test data built from fragments at runtime,
   YARA strings escaped), no embedded dumping/injection code (memory capture uses vendor-signed WinPmem/ProcDump),
-  scheduled task runs visibly with `RemoteSigned` — enforced by `tests/test_av_safety.py`. ARGUS never asks you to
+  scheduled task runs visibly with `RemoteSigned`, enforced by `tests/test_av_safety.py`. ARGUS never asks you to
   add Defender exclusions.
+
+## Screenshots
+**System assessment dashboard** (`*.html`, written next to the JSON/MD/Navigator outputs after every hunt), here on synthetic infected telemetry:
+
+![ARGUS dashboard, infected host](docs/images/dashboard-infected.png)
+
+Same dashboard on a clean host, the harness running the full-hunt workflow, and the self-test suite:
+
+| Clean host | Harness run | Self-test |
+|---|---|---|
+| ![clean](docs/images/dashboard-clean.png) | ![harness](docs/images/harness-run.png) | ![tests](docs/images/tests.png) |
+
+## YARA rules
+- **Vendored sets (1993 files)** from [Haind03/Exhume](https://github.com/Haind03/Exhume) and [Haind03/Unveil](https://github.com/Haind03/Unveil):
+  Neo23x0 signature-base (DRL 1.1), Elastic protections-artifacts (Elastic License 2.0), ReversingLabs (MIT),
+  ESET malware-ioc (BSD-2), and custom rules. Stored as `skills/references/yara/vendor/argus-rules.bundle`
+  (gzip + XOR mask, the THOR/LOKI approach, so Defender does not quarantine plaintext signature strings);
+  decoded only in memory by `engine/argus/yara_bundle.py`. Licences: `skills/references/yara/vendor/LICENSES/`.
+  Rebuild: `python -I tools/vendor_yara.py --src <Exhume>/rules --src <Unveil>/rules`.
+- **Starter rules** `skills/references/yara/argus_starter.yar` (generated, escaped strings).
+- Used by `malware-triage`, `process-memory-analysis` (requires `pip install yara-python`).
 
 ## Install
 ### As a Claude Code plugin (recommended)
@@ -105,7 +128,7 @@ deep-dive, report), `incident-investigation` (order of volatility → analysis �
 | *(intel only)* | TA0043 Reconnaissance, TA0042 Resource Development | not host-observable → IOC lists |
 
 Full machine-readable map: `skills/references/ttp-index.json`; Navigator coverage layer:
-`python -I engine/argus_cli.py coverage`. Coverage is honest: all 12 host-observable tactics, ~70 techniques —
+`python -I engine/argus_cli.py coverage`. Coverage is honest: all 12 host-observable tactics, ~70 techniques , 
 not every Enterprise technique.
 
 ### All skills
@@ -129,10 +152,10 @@ tools/            generators (tactic skills, YARA, workflow JSON, skills-lock)  
 ```
 
 ## Output formats
-- `argus.findings/1` JSON — each finding: `id`, `rule_id`, `artifact`, `technique`, `tactic`, `signals` /
+- `argus.findings/1` JSON, each finding: `id`, `rule_id`, `artifact`, `technique`, `tactic`, `signals` /
   `signals_matched`, `score` (0-100), `severity`, `action` (recommended analyst action), `baseline_known`, `intel`.
-- Markdown report — executive summary, per-tactic counts, findings table + details, baseline changes, collection gaps.
-- ATT&CK Navigator layer (`*.navigator.json`) — light blue = covered by a rule, coloured = finding severity.
+- Markdown report, executive summary, per-tactic counts, findings table + details, baseline changes, collection gaps.
+- ATT&CK Navigator layer (`*.navigator.json`), light blue = covered by a rule, coloured = finding severity.
 
 ## Development
 ```bash
@@ -147,4 +170,7 @@ python -I tests/synthetic.py demo.json # synthetic infected telemetry for demos 
 ```
 
 ## License
-MIT — see [LICENSE](LICENSE). Third-party tools keep their own licences.
+MIT, see [LICENSE](LICENSE). Third-party tools keep their own licences.
+
+---
+ARGUS by HaiND from the Post and Telecommunication Institute of Technology.

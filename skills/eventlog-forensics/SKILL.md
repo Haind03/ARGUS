@@ -1,12 +1,12 @@
 ---
 name: eventlog-forensics
-description: Use when you need deep analysis of Windows EVENT LOGS on the user's own PC (live channels or exported .evtx) — logons/RDP, explicit credentials, account changes, scheduled-task creation, audit-policy tampering, Defender detections and disablement, WMI persistence, BITS, Sysmon, PowerShell 4103/4104 — scored and placed on a UTC timeline.
+description: Use when you need deep analysis of Windows EVENT LOGS on the user's own PC (live channels or exported .evtx), logons/RDP, explicit credentials, account changes, scheduled-task creation, audit-policy tampering, Defender detections and disablement, WMI persistence, BITS, Sysmon, PowerShell 4103/4104, scored and placed on a UTC timeline.
 ---
 
 # Event-log forensics
 
 > **Scope:** logs of the user's own, authorised machine. Export is read-only. Logs may contain user names,
-> command lines and script content — keep exports in the case folder.
+> command lines and script content, keep exports in the case folder.
 
 ## Run
 ```powershell

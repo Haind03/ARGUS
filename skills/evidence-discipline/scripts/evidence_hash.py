@@ -49,7 +49,7 @@ def main():
         if not dst.exists():
             shutil.copyfile(src, dst)  # content only; no metadata/ACL/ADS copied
         if hashes(dst)["sha256"] != rec["hashes"]["sha256"]:
-            sys.exit("hash mismatch after copy — source changed during acquisition?")
+            sys.exit("hash mismatch after copy, source changed during acquisition?")
         rec["evidence_copy"] = str(dst)
         with open(ev / "custody.jsonl", "a", encoding="utf-8") as fh:
             fh.write(json.dumps(rec) + "\n")

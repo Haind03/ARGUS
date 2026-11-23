@@ -26,4 +26,4 @@
 | Bits-Client | 59 / 60 | BITS transfer start / stop (URL) | T1197 | ARG-EL-015 |
 | TaskScheduler/Op | 106 / 140 / 141 / 200 | task registered / updated / deleted / run | T1053.005 | (timeline) |
 
-Absence matters: a busy PC with **zero** 4688/4104 means logging is off — not that nothing ran.
+Absence matters: a busy PC with **zero** 4688/4104 means logging is off, not that nothing ran.

@@ -5,7 +5,7 @@ import datetime as _dt
 import platform
 from typing import Any
 
-from . import FINDINGS_SCHEMA, __version__
+from . import FINDINGS_SCHEMA, SIGNATURE, __version__
 from .rules import RULES, TACTICS, Context
 from .scoring import Finding, at_least
 
@@ -63,6 +63,7 @@ def build_result(tel: dict[str, Any], findings: list[Finding], preset_name: str,
     return {
         "schema": FINDINGS_SCHEMA,
         "argus_version": __version__,
+        "generator": SIGNATURE,
         "generated_at": _dt.datetime.now(_dt.timezone.utc).isoformat(timespec="seconds"),
         "analysis_host": platform.node(),
         "target_host": host.get("hostname"),

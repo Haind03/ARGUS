@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Collection (TA0009) detector — thin wrapper over the ARGUS engine. Run with: python -I collection_hunting.py"""
+"""Collection (TA0009) detector, thin wrapper over the ARGUS engine. Run with: python -I collection_hunting.py"""
 import sys
 from pathlib import Path
 

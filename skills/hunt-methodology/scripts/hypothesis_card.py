@@ -23,7 +23,7 @@ def main():
     a = ap.parse_args()
     case = Path(a.case).resolve(strict=True)
     wf = argus_cli.load_workflow(a.workflow)
-    lines = [f"# Hypothesis cards — {wf.get('name')}", ""]
+    lines = [f"# Hypothesis cards, {wf.get('name')}", ""]
     for ph in wf.get("phases", []):
         res = case / "phases" / f"{ph['id']}.json"
         verdict, n = "not run", "-"

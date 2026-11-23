@@ -1,4 +1,4 @@
-"""Action guard — the fail-closed safety core of the ARGUS harness.
+"""Action guard, the fail-closed safety core of the ARGUS harness.
 
 Classifies a shell command (PowerShell / cmd / bash) as:
   read        : inspection only                              -> allow
@@ -95,7 +95,7 @@ def decide(command: str, case_dir: Path | None = None) -> tuple[str, str]:
         return ("allow", f"{kind}: {why}")
     if kind == "egress":
         if os.environ.get("ARGUS_INTEL_ONLINE") == "1":
-            return ("ask", f"egress ({why}): online intel is enabled — confirm only SHA-256 hashes are sent")
+            return ("ask", f"egress ({why}): online intel is enabled, confirm only SHA-256 hashes are sent")
         return ("ask", f"egress ({why}): ARGUS is offline-by-default; user must opt in explicitly")
     if kind == "config":
         return ("ask", f"config change ({why}): opt-in action, confirm with the user")

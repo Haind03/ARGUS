@@ -1,4 +1,5 @@
 <#
+  ARGUS by HaiND from the Post and Telecommunication Institute of Technology
 .SYNOPSIS
   ARGUS telemetry collector (READ-ONLY). Produces argus.telemetry/1 JSON.
 

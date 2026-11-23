@@ -1,4 +1,5 @@
 <#
+  ARGUS by HaiND from the Post and Telecommunication Institute of Technology
 .SYNOPSIS
   READ-ONLY export of Windows event logs (live channels or offline .evtx files) to ARGUS JSON
   ({"schema":"argus.telemetry/1","events":[...]}), so they can be scored by evtx_hunt.py / the engine.

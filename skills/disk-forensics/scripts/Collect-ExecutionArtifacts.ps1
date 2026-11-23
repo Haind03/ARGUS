@@ -1,4 +1,5 @@
 <#
+  ARGUS by HaiND from the Post and Telecommunication Institute of Technology
 .SYNOPSIS
   READ-ONLY collection of Windows execution & file-activity artefacts -> argus.artifacts/1 JSON.
   Prefetch, BAM/DAM, UserAssist (ROT13-decoded), RecentDocs, LNK in Recent, Jump Lists (metadata),

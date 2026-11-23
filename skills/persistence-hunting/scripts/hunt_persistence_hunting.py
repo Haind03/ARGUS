@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Persistence (TA0003) detector — thin wrapper over the ARGUS engine. Run with: python -I persistence_hunting.py"""
+"""Persistence (TA0003) detector, thin wrapper over the ARGUS engine. Run with: python -I persistence_hunting.py"""
 import sys
 from pathlib import Path
 

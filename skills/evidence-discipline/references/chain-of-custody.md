@@ -8,4 +8,4 @@ Integrity: `argus case verify` checks the hash-chained `audit.jsonl`; re-hash ev
 and before handing it to anyone (police, insurer, CERT).
 
 If the case might become legal (fraud, extortion): stop at evidence capture, do not remediate further,
-and contact the authorities — they may want the device as-is.
+and contact the authorities, they may want the device as-is.

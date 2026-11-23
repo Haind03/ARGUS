@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ARGUS command-line entry point.
+"""ARGUS command-line entry point. by HaiND from the Post and Telecommunication Institute of Technology.
 
 Always run isolated:  python -I engine/argus_cli.py <command> ...
 (-I ignores PYTHON* env vars, user site-packages and the CWD on sys.path,
@@ -20,7 +20,7 @@ if str(ENGINE_DIR) not in sys.path:
 
 from argus import __version__  # noqa: E402
 from argus import baseline as bl  # noqa: E402
-from argus import guard, harness, intel, report, triage  # noqa: E402
+from argus import guard, harness, html_report, intel, report, triage  # noqa: E402
 from argus.hunt import build_result, filter_severity, run_rules  # noqa: E402
 from argus.rules import RULES, TACTICS  # noqa: E402
 from argus.safeio import load_json, safe_child, safe_input_file, safe_output_dir, write_json, write_text  # noqa: E402
@@ -74,6 +74,7 @@ def cmd_hunt(a) -> int:
     write_json(safe_child(out, stem + ".json"), result)
     write_text(safe_child(out, stem + ".md"), report.markdown(result, delta))
     write_json(safe_child(out, stem + ".navigator.json"), report.navigator_layer(result, f"ARGUS {stem}"))
+    write_text(safe_child(out, stem + ".html"), html_report.render(result))
     s = result["summary"]
     print(json.dumps({"out": str(out / stem), "total": s["total"], "by_severity": s["by_severity"],
                       "top_score": s["top_score"], "intel_online": result["intel"]["online_enabled"]}, indent=2))

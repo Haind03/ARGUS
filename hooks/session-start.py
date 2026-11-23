@@ -1,6 +1,6 @@
 """SessionStart hook: inject the using-argus dispatcher.
 
-DEGRADATION: fail-OPEN (context injection is a convenience, never a gate) — always exits 0.
+DEGRADATION: fail-OPEN (context injection is a convenience, never a gate), always exits 0.
 """
 import json
 import os

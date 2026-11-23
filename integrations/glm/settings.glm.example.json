@@ -1,0 +1,16 @@
+{
+  "$comment": "Run ARGUS in Claude Code on GLM via Z.ai's Anthropic-compatible endpoint. Copy the env block into ~/.claude/settings.json. Put your key in ANTHROPIC_AUTH_TOKEN locally; never commit it. Z.ai recommends NOT hardcoding model names (server-side mapping); uncomment the model lines only if your plan requires it and check docs.z.ai for current names. by HaiND from the Post and Telecommunication Institute of Technology",
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://api.z.ai/api/anthropic",
+    "ANTHROPIC_AUTH_TOKEN": "<your-z.ai-api-key>",
+    "API_TIMEOUT_MS": "3000000",
+    "ARGUS_INTEL_ONLINE": "0"
+  },
+  "_optional_model_mapping": {
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "<glm model, see docs.z.ai>",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "<glm model, see docs.z.ai>",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "<glm air model, see docs.z.ai>"
+  },
+  "includeCoAuthoredBy": false,
+  "attribution": { "commit": "", "pr": "" }
+}

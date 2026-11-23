@@ -1,6 +1,6 @@
 ---
 name: reporting-discipline
-description: Use when writing or reviewing an ARGUS hunt / incident report — structure, confidence language (confirmed vs suspected), ATT&CK mapping and Navigator layer, collection gaps, recommended actions, privacy of personal data, and the gate that blocks FINAL reports with undispositioned high/critical findings.
+description: Use when writing or reviewing an ARGUS hunt / incident report, structure, confidence language (confirmed vs suspected), ATT&CK mapping and Navigator layer, collection gaps, recommended actions, privacy of personal data, and the gate that blocks FINAL reports with undispositioned high/critical findings.
 ---
 
 # Reporting discipline
@@ -20,8 +20,8 @@ https://mitre-attack.github.io/attack-navigator/ → Open Existing Layer → Upl
 ## Structure
 1. Executive summary (plain language: is the PC compromised? what should the user do now?)
 2. Scope & method (machine, time window, preset/workflow, baseline, online intel on/off)
-3. Findings by severity — technique, evidence, confidence, disposition, recommended action
-4. ATT&CK view (Navigator layer) — covered vs observed
+3. Findings by severity, technique, evidence, confidence, disposition, recommended action
+4. ATT&CK view (Navigator layer), covered vs observed
 5. Timeline (if incident)
 6. Collection gaps & limitations
 7. Actions taken (only with IR opt-in, from response-log) and next steps
@@ -30,7 +30,7 @@ https://mitre-attack.github.io/attack-navigator/ → Open Existing Layer → Upl
 | Evidence | Wording |
 |---|---|
 | TP disposition + validation | "confirmed" |
-| high score, not validated | "suspicious — requires validation" |
+| high score, not validated | "suspicious, requires validation" |
 | no findings, gaps present | "not observed in available data (gaps: …)" |
 | no findings, good coverage | "no indicators found for the tested hypotheses" |
 

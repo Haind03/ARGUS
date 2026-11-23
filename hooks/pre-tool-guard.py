@@ -1,6 +1,6 @@
 """PreToolUse hook: ARGUS action guard for Bash / PowerShell tool calls.
 
-DEGRADATION: fail-CLOSED — any internal error yields "ask" (never a silent allow of an unknown command).
+DEGRADATION: fail-CLOSED, any internal error yields "ask" (never a silent allow of an unknown command).
 Decision source: engine/argus/guard.py (allow | ask | deny).
 Active case for IR opt-in: $ARGUS_CASE, else the most recently modified case under ./argus-cases.
 """

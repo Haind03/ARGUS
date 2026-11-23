@@ -1,6 +1,6 @@
 # argus.telemetry/1 schema
 
-Top-level keys (all optional — rules skip missing sections and the gap should be reported):
+Top-level keys (all optional, rules skip missing sections and the gap should be reported):
 
 | Key | Type | Fields | Feeds tactics |
 |---|---|---|---|
@@ -19,10 +19,10 @@ Top-level keys (all optional — rules skip missing sections and the gap should 
 | `registry` | object | winlogon{Shell,Userinit}, appinit_dlls, appcert_dlls, wdigest_use_logon_credential, disable_antispyware, disable_realtime_policy, enable_lua, disable_task_mgr, lsa_run_as_ppl_off, ps_scriptblock_logging_off | TA0003, TA0005, TA0006 |
 | `com_hijacks` | list | clsid, server, value | TA0003 |
 | `bits_jobs` | list | name, owner, state, url, file, notify_cmd | TA0003 |
-| `users`, `local_admins` | list | — | TA0003 |
+| `users`, `local_admins` | list | n/a | TA0003 |
 | `browser_extensions` | list | browser, id, name, version, permissions[], from_webstore, developer_mode | TA0003 |
 | `shadow_copies` | int | count | TA0040 |
-| `files` | list | path, size, modified, created, zone_id, host_url, hidden, signed, signer, sha256 (metadata only — contents never read) | TA0001, TA0009, TA0040 |
+| `files` | list | path, size, modified, created, zone_id, host_url, hidden, signed, signer, sha256 (metadata only, contents never read) | TA0001, TA0009, TA0040 |
 | `events` | list | log, id, time, level, data{EventData fields} | all |
 | `collection_errors` | list[str] | what could not be collected | report |
 

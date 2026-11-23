@@ -3,10 +3,10 @@
 | Indicator | Plugin | Notes |
 |---|---|---|
 | DKOM-hidden process | psscan vs pslist | Unlinked EPROCESS; psscan carves pool tags |
-| SSDT hook | windows.ssdt | Entry owner not ntoskrnl/win32k — on x64 PatchGuard makes this rare; high confidence |
+| SSDT hook | windows.ssdt | Entry owner not ntoskrnl/win32k, on x64 PatchGuard makes this rare; high confidence |
 | Unknown kernel callback | windows.callbacks | PsSetCreateProcessNotifyRoutine/LoadImage/Registry callbacks from UNKNOWN module |
 | Driver object without module | driverscan vs modules | unloaded/hidden driver |
-| Vulnerable signed driver | modules, driverscan | BYOVD (RTCore64, dbutil_2_3, gdrv, procexp152, ...) — used to kill AV/EDR |
+| Vulnerable signed driver | modules, driverscan | BYOVD (RTCore64, dbutil_2_3, gdrv, procexp152, ...), used to kill AV/EDR |
 | IRP hooks | windows.driverirp | IRP handlers outside the driver's own module |
 
 ## Response posture

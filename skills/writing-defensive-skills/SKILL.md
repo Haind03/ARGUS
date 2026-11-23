@@ -1,6 +1,6 @@
 ---
 name: writing-defensive-skills
-description: Use when creating or editing an ARGUS skill, reference, collector or detector — frontmatter conventions ("Use when..."), mandatory scope/detect-only statements, ATT&CK-referenced technique files, read-only collectors, `python -I` detectors with safe path handling, AV-safe content, tests, and regenerating skills-lock.json.
+description: Use when creating or editing an ARGUS skill, reference, collector or detector, frontmatter conventions ("Use when..."), mandatory scope/detect-only statements, ATT&CK-referenced technique files, read-only collectors, `python -I` detectors with safe path handling, AV-safe content, tests, and regenerating skills-lock.json.
 ---
 
 # Writing defensive skills

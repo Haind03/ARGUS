@@ -16,3 +16,5 @@ ARGUS is a **defensive** toolkit. By using it you agree to:
    improve malware or to evade security controls.
 6. **Third-party tools** (Sysmon, osquery, Volatility, YARA, WinPmem, ProcDump, tshark, Eric Zimmerman tools,
    VirusTotal, abuse.ch) are governed by their own licences and terms; download them from their vendors.
+
+ARGUS by HaiND from the Post and Telecommunication Institute of Technology.

@@ -1,5 +1,5 @@
 ---
-description: Hunt command-and-control (TA0011) — suspicious outbound connections, beaconing, DGA, web-service C2, tunnels, RMM
+description: Hunt command-and-control (TA0011), suspicious outbound connections, beaconing, DGA, web-service C2, tunnels, RMM
 argument-hint: "[telemetry.json ...] [--pcap-csv flows.csv]"
 ---
 

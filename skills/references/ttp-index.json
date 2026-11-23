@@ -1,7 +1,7 @@
 {
   "out_of_host_scope": {
-    "TA0042": "Resource Development \u2014 attacker infrastructure; consume as threat-intel IOCs (domains/IPs) only.",
-    "TA0043": "Reconnaissance \u2014 happens on attacker infrastructure; at most visible as inbound scans in firewall logs."
+    "TA0042": "Resource Development, attacker infrastructure; consume as threat-intel IOCs (domains/IPs) only.",
+    "TA0043": "Reconnaissance, happens on attacker infrastructure; at most visible as inbound scans in firewall logs."
   },
   "schema": "argus.ttp-index/1",
   "techniques": {

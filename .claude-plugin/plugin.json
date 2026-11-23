@@ -1,10 +1,10 @@
 {
   "name": "defensive-claude",
-  "displayName": "ARGUS — defensive threat hunting",
-  "description": "ARGUS: detect-only threat-hunting toolkit for your own Windows PC — 33 skills covering every host-observable MITRE ATT&CK Enterprise tactic, read-only PowerShell collectors, a Python scoring engine, baseline/diff, memory/disk/event-log/network/browser forensics, a case harness with gates and a PreToolUse action guard. Offline-first; online intel is opt-in.",
+  "displayName": "ARGUS, defensive threat hunting",
+  "description": "ARGUS: detect-only threat-hunting toolkit for your own Windows PC, 33 skills covering every host-observable MITRE ATT&CK Enterprise tactic, read-only PowerShell collectors, a Python scoring engine, baseline/diff, memory/disk/event-log/network/browser forensics, a case harness with gates and a PreToolUse action guard. Offline-first; online intel is opt-in.",
   "version": "0.1.0",
   "author": {
-    "name": "haind03",
+    "name": "HaiND (Post and Telecommunication Institute of Technology)",
     "url": "https://github.com/haind03"
   },
   "homepage": "https://github.com/haind03/argus",

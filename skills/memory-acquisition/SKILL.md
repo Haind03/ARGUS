@@ -1,6 +1,6 @@
 ---
 name: memory-acquisition
-description: Use when you need to DUMP MEMORY from the user's own Windows PC — full physical RAM (WinPmem/DumpIt/Magnet), a single suspicious process (minidump), or offline sources (hiberfil.sys, pagefile.sys, crash dumps) — with explicit opt-in, hashing and chain of custody, before memory-forensics or process-memory-analysis.
+description: Use when you need to DUMP MEMORY from the user's own Windows PC, full physical RAM (WinPmem/DumpIt/Magnet), a single suspicious process (minidump), or offline sources (hiberfil.sys, pagefile.sys, crash dumps), with explicit opt-in, hashing and chain of custody, before memory-forensics or process-memory-analysis.
 ---
 
 # Memory acquisition (opt-in)
@@ -15,12 +15,12 @@ description: Use when you need to DUMP MEMORY from the user's own Windows PC —
 | Fileless / injection / rootkit suspicion | **Full RAM** | Volatility needs the whole kernel + all processes |
 | One suspicious process (unknown binary, odd network) | **Process minidump** | small, fast, enough for strings/YARA/config extraction |
 | Ransomware still running | **Full RAM first, do not reboot** | encryption keys may be resident |
-| Machine already off | hiberfil.sys / pagefile.sys / MEMORY.DMP | offline remnants — see references |
+| Machine already off | hiberfil.sys / pagefile.sys / MEMORY.DMP | offline remnants, see references |
 
 Order of volatility: RAM → network state (`Collect-Telemetry -Sections network,dns`) → processes → disk.
 
 ## Run
-ARGUS ships **no dumping code of its own** — it validates and launches vendor-signed tools you download
+ARGUS ships **no dumping code of its own**, it validates and launches vendor-signed tools you download
 yourself (WinPmem, Sysinternals ProcDump), recording their hash and signer. This keeps the toolkit from
 looking like a credential dumper to antivirus and keeps provenance clean.
 ```powershell

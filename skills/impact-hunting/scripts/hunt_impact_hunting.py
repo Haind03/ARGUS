@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Impact (TA0040) detector — thin wrapper over the ARGUS engine. Run with: python -I impact_hunting.py"""
+"""Impact (TA0040) detector, thin wrapper over the ARGUS engine. Run with: python -I impact_hunting.py"""
 import sys
 from pathlib import Path
 

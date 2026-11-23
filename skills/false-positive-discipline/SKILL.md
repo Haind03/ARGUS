@@ -1,6 +1,6 @@
 ---
 name: false-positive-discipline
-description: Use when about to call ANY ARGUS finding malicious or benign — validating heuristic scores against signer, path, parent, timing, baseline and known software; recording dispositions; and tuning suppressions so scheduled scans stay quiet without hiding real threats.
+description: Use when about to call ANY ARGUS finding malicious or benign, validating heuristic scores against signer, path, parent, timing, baseline and known software; recording dispositions; and tuning suppressions so scheduled scans stay quiet without hiding real threats.
 ---
 
 # False-positive discipline
@@ -12,7 +12,7 @@ description: Use when about to call ANY ARGUS finding malicious or benign — va
 ## Validate every high/critical finding
 | Question | Check |
 |---|---|
-| Who signed it? | `Get-AuthenticodeSignature` — valid + expected vendor? revoked? |
+| Who signed it? | `Get-AuthenticodeSignature`, valid + expected vendor? revoked? |
 | Where does it live? | vendor folder vs Temp/Public/random AppData folder |
 | Who started it? | parent chain (explorer/services vs Office/script host) |
 | When did it appear? | baseline diff, file creation time vs user activity, install logs |
@@ -28,7 +28,7 @@ Verdicts: `true_positive`, `false_positive`, `benign_expected`, `needs_more_data
 
 ## Tune (without blinding yourself)
 `python -I skills/false-positive-discipline/scripts/fp_tune.py --case <dir> --out suppress.json` exports
-FP/benign keys → `argus hunt --suppress suppress.json` down-weights exactly those artefacts (× 0.3) — the
+FP/benign keys → `argus hunt --suppress suppress.json` down-weights exactly those artefacts (× 0.3), the
 same binary at a **new path or with a new command line** produces a new key and alerts again.
 Never disable a whole rule because of one FP; never suppress by name alone.
 

@@ -1,10 +1,10 @@
-"""Threat-intel enrichment — HYBRID OPT-IN.
+"""Threat-intel enrichment, HYBRID OPT-IN.
 
 Default: OFFLINE. Only local IOC lists are consulted.
 Online lookups happen only when BOTH are true:
   1. ARGUS_INTEL_ONLINE=1 (or --online on the CLI), and
   2. the provider's API key env var is set (VT_API_KEY, ABUSECH_AUTH_KEY).
-Only SHA-256 hashes are ever sent — never file contents, paths, usernames or hostnames.
+Only SHA-256 hashes are ever sent, never file contents, paths, usernames or hostnames.
 """
 from __future__ import annotations
 

@@ -1,0 +1,36 @@
+{
+  "schema": "argus.yara-bundle/1",
+  "author": "ARGUS by HaiND from the Post and Telecommunication Institute of Technology",
+  "sources": [
+    {
+      "repo": "https://github.com/Haind03/exhume",
+      "rule_sets": {
+        "custom": 1,
+        "elastic": 274,
+        "eset": 9,
+        "reversinglabs": 22,
+        "signature-base": 51
+      }
+    },
+    {
+      "repo": "https://github.com/Haind03/unveil",
+      "rule_sets": {
+        "custom": 1,
+        "elastic": 734,
+        "reversinglabs": 288,
+        "signature-base": 613
+      }
+    }
+  ],
+  "files": 1993,
+  "sha256": "09c8b44efad50527562d191da3c488cc332837d0107531adb02973c22cb797cd",
+  "licenses": {
+    "signature-base": "Detection Rule License 1.1 (Neo23x0/signature-base), author/reference metadata kept",
+    "elastic": "Elastic License 2.0 (elastic/protections-artifacts)",
+    "reversinglabs": "MIT, Copyright (c) 2020 ReversingLabs",
+    "eset": "BSD 2-Clause (eset/malware-ioc)",
+    "custom": "MIT, HaiND"
+  },
+  "encoding": "gzip then XOR mask (AV-safe storage, not secrecy); decoded only in memory",
+  "skipped": []
+}

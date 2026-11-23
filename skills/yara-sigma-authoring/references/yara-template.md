@@ -19,4 +19,4 @@ rule ARGUS_<Family>_<Artifact>
 ```
 Guidelines: anchor with file type (`uint16(0)==0x5A4D`, `uint32(0)==0x0000004C` for LNK), cap `filesize`,
 require ≥2 independent strings, avoid strings present in Windows binaries, document FPs in `meta`.
-Memory scanning (`windows.vadyarascan`) drops the file-type anchor — create a `_mem` variant without it.
+Memory scanning (`windows.vadyarascan`) drops the file-type anchor, create a `_mem` variant without it.

@@ -17,7 +17,7 @@ def test_cli_hunt_writes_three_outputs(tmp_path, infected_file):
     r = run("hunt", "--input", str(infected_file), "--out-dir", str(tmp_path))
     assert r.returncode == 2, r.stderr  # high/critical present
     names = {p.name.split(".", 1)[1] for p in tmp_path.iterdir() if p.name.startswith("argus-")}
-    assert {"json", "md", "navigator.json"} <= names
+    assert {"json", "md", "navigator.json", "html"} <= names
     res = json.loads(next(p for p in tmp_path.glob("argus-*[0-9].json")).read_text())
     assert res["mode"] == "detect-only" and res["intel"]["online_enabled"] is False
     assert res["intel"]["hashes_sent"] == []
@@ -87,3 +87,22 @@ def test_network_beacon_detection():
     assert any(f.rule_id == "ARG-NF-001" for f in fs)
     jitter = [{**r, "t": r["t"] + (i * 37 % 50)} for i, r in enumerate(rows)]
     assert not any(f.rule_id == "ARG-NF-001" and f.artifact["cv"] > 0.25 for f in nh.hunt(jitter))
+
+
+def test_vendored_yara_bundle_loads_and_is_masked():
+    from argus import yara_bundle
+    bp = yara_bundle.bundle_path(ROOT)
+    if not bp.is_file():
+        import pytest
+        pytest.skip("bundle not built")
+    raw = bp.read_bytes()
+    assert raw.startswith(yara_bundle.MAGIC)
+    assert b"rule " not in raw[:4096]  # masked on disk
+    src = yara_bundle.load_sources(bp)
+    assert len(src) > 1000 and all(k.split("/")[0] in ("exhume", "unveil") for k in src)
+    try:
+        import yara  # noqa: F401
+    except ImportError:
+        return
+    rules, n = yara_bundle.compile_all(ROOT)
+    assert rules is not None and n == len(src)

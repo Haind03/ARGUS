@@ -17,4 +17,4 @@ Then:
 python -I engine/argus_cli.py triage out/<file>                               # static triage (PE/strings/YARA)
 python -I skills/process-memory-analysis/scripts/scan_dump.py --dump out/pid.<PID>.dmp   # strings/IOC/YARA/carving
 ```
-Dumped PEs are rebuilt from memory: section entropy and import tables may differ from the disk file — expected.
+Dumped PEs are rebuilt from memory: section entropy and import tables may differ from the disk file, expected.

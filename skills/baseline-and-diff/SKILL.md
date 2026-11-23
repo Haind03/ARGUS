@@ -6,7 +6,7 @@ description: Use when creating a known-good baseline of the user's own PC, compa
 # Baseline & diff (data layer)
 
 > **Scope:** the user's own, authorised machine only. Creating a baseline and registering a scheduled
-> scan are explicit user actions — never do either silently.
+> scan are explicit user actions, never do either silently.
 
 ## Why
 Heuristics alone are noisy on a real PC. A baseline captured when the machine is believed clean lets
@@ -19,7 +19,7 @@ python -I engine/argus_cli.py hunt --input telemetry.json --preset new-machine-b
 # analyst reviews every finding; only if nothing is malicious:
 python -I engine/argus_cli.py baseline --input telemetry.json --out-dir %ProgramData%\ARGUS\baseline
 ```
-**Never baseline a host with open high/critical findings** — you would whitelist the intrusion.
+**Never baseline a host with open high/critical findings**, you would whitelist the intrusion.
 
 ## Diff
 ```bash

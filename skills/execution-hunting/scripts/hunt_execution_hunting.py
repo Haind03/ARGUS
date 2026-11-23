@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Execution (TA0002) detector — thin wrapper over the ARGUS engine. Run with: python -I execution_hunting.py"""
+"""Execution (TA0002) detector, thin wrapper over the ARGUS engine. Run with: python -I execution_hunting.py"""
 import sys
 from pathlib import Path
 

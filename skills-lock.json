@@ -3,167 +3,167 @@
   "skills": {
     "baseline-and-diff": {
       "path": "skills/baseline-and-diff",
-      "sha256": "6ad10dc48d19bbe5b8801dc5f467e564c00687075e50dc5c0a1089116e343e2e",
+      "sha256": "1963a55edac5658a7bc10a7ab83058760634c0dea345ec1378e1bd5a0bdf6003",
       "files": 6
     },
     "browser-forensics": {
       "path": "skills/browser-forensics",
-      "sha256": "ea6376ab9d1472c7a5bf2af632c8e9d7f3a164652bea14cbb1843c89f2b26afe",
+      "sha256": "bd3b0aebbd14ae9c69b028336348fd1fac90717cb6c65e32365a23862a812a5a",
       "files": 4
     },
     "c2-hunting": {
       "path": "skills/c2-hunting",
-      "sha256": "d9c6458fb8d40d949bc9890aae9c261a1f5e1b8084f87d7e1cef82cd858af9cd",
+      "sha256": "a786e34c36528c5f1effe75aa6e8933d9d3c25a74ec5cd6755eb773ae769a722",
       "files": 11
     },
     "collection-hunting": {
       "path": "skills/collection-hunting",
-      "sha256": "7ca72bb73238bd5d798abed3e53724575cac93b330709c04d620eb34a9d5ca4c",
+      "sha256": "0563ace0e82b70a6e8f8081f2c77867ad75776f188a5c23ee6a83a41da577a11",
       "files": 7
     },
     "credential-access-hunting": {
       "path": "skills/credential-access-hunting",
-      "sha256": "611733d36c1df19807212b2d2f74141912c89c49a0815538c4eae39a94c2cb0d",
+      "sha256": "7213d83056158b6c1451de192b964f99ab2280fef1afdc11b14593c2a2a0e6df",
       "files": 8
     },
     "defense-evasion-hunting": {
       "path": "skills/defense-evasion-hunting",
-      "sha256": "e1d72a502aa3da3d0e029794cc350c705b22c78f27cfbb3c2a4141f97dfd9d75",
+      "sha256": "565a77f9a2b3d9e26d1e4c011e6dbaea7746bd54664f3e1e38a5925dbad9616f",
       "files": 12
     },
     "discovery-hunting": {
       "path": "skills/discovery-hunting",
-      "sha256": "d3fbeb390b5ad5456760c6c4cedbceb861499e3e2501661255968c52b577f0d9",
+      "sha256": "d7e0a7f5622ae366eb098b4b8e12e0d2880288f00e55ae3a2b31ac95e927c83e",
       "files": 6
     },
     "disk-forensics": {
       "path": "skills/disk-forensics",
-      "sha256": "85f1f7efa5a695de692bf26d852f7e5f64c689a2177206a3ca22cf860dfb3010",
+      "sha256": "ad3e60bb216497a866be8e15147656d4087625ab0121ccc89fec0d6a7163220f",
       "files": 5
     },
     "eventlog-forensics": {
       "path": "skills/eventlog-forensics",
-      "sha256": "d7cc16f732f430657441d900ab83478a2c285413c3afe837d7b00006bb323e8f",
+      "sha256": "c081e32ca6ee8a3b5632fd0b78cd7302db044455e262ed93a183789c9405e479",
       "files": 4
     },
     "evidence-discipline": {
       "path": "skills/evidence-discipline",
-      "sha256": "d764ae67e2baddf6bcb64a79cfc4d6a669170e8920063d4f1c9219eea70402bd",
+      "sha256": "c9590f087cddd336403c12f48ad9d629611909357a6702c159be6a8ca81fe023",
       "files": 3
     },
     "execution-hunting": {
       "path": "skills/execution-hunting",
-      "sha256": "effb59d7c05580e4b4be1542d556bceddbceb6ed0501af651d06881830a7478f",
+      "sha256": "7a2efa0943ab4e3fdbbde6378137415012fca2a2856022317f1465a6f3eeee58",
       "files": 10
     },
     "exfiltration-hunting": {
       "path": "skills/exfiltration-hunting",
-      "sha256": "4506e1d90dfbee63c9da9eec95b8a60fc6fbeb98035017ead9cb7cdd00b401af",
+      "sha256": "4a4f50dce794b77be609f21b9a4506f9cceed38183851c292e2ee8769481642f",
       "files": 7
     },
     "false-positive-discipline": {
       "path": "skills/false-positive-discipline",
-      "sha256": "645fea10fd4a1931cea9506b617ea8cab6f45cc0c12b40c99d9da8151dd1d2a7",
+      "sha256": "e4ce23b2e91c9765c0ad51c016d6cf469eb5006b35357b921f102b4a54afe3a5",
       "files": 3
     },
     "hunt-methodology": {
       "path": "skills/hunt-methodology",
-      "sha256": "2b02867ac1cb41102501fed34df245fa8ec5a183e28b3367a18121902cf54e3d",
+      "sha256": "6d5b6c72ebebf9a66a2c76bec74b2d9e178883a72bc872c22c9440049188398e",
       "files": 4
     },
     "impact-hunting": {
       "path": "skills/impact-hunting",
-      "sha256": "5996e846f4e78687bc7a813efdd209bbe87755917e056c9145238d8645e66f0a",
+      "sha256": "c6ac9f9e4f1a1cdcd241f442de847281d3fff619b697ce9a137942a4857ca993",
       "files": 8
     },
     "incident-response": {
       "path": "skills/incident-response",
-      "sha256": "cb6e0fc79c226f7b2dc8251d8b5567332d2e7a93ca80f5a90ac3f75f77f95d1f",
+      "sha256": "033e54b37e6433cdc8d192be31fc6d3cbc8a66c854e09aef5e9937f17b850c98",
       "files": 5
     },
     "initial-access-hunting": {
       "path": "skills/initial-access-hunting",
-      "sha256": "8a55d5f280aba66cd6eab9e996aa5007e26e3fb9015fec6d7fbb90ea1a40acd9",
+      "sha256": "3e3e5527cc3dda7419faf1135f7371dfeca52798f6a1f2149330820695f7cd51",
       "files": 10
     },
     "lateral-movement-hunting": {
       "path": "skills/lateral-movement-hunting",
-      "sha256": "c776405f080e3f247c10ddebf31f35fd410cf95ffc68ccc6346772f3dc498620",
+      "sha256": "6987a3ad93fa91ce537f000c3ead357b09e6477ffa17d1220c63234ae8d07573",
       "files": 7
     },
     "malware-triage": {
       "path": "skills/malware-triage",
-      "sha256": "8e2e1d55f875d0157874fc605c72e27592860d6d22afbdb18221e2a134f29bd9",
+      "sha256": "13641e4acfb31e46d26280e3c4b613ac338fa2df369b16e1412cdc77f85e7647",
       "files": 4
     },
     "memory-acquisition": {
       "path": "skills/memory-acquisition",
-      "sha256": "e7b0011f2cdb057fe62692480d49297fef772c6fdd3b11791a947867a200aef8",
+      "sha256": "adf2fc7ec5322c10dbd54c85380bd805fa7ba649cec6490995ff45acdd573d07",
       "files": 4
     },
     "memory-forensics": {
       "path": "skills/memory-forensics",
-      "sha256": "551a695590ba4461910815382606f2f5e79226f2f74cc7d1f700f4ff3a24df70",
+      "sha256": "50d43ccbd66ad76ea2445239be7f0021764dafe20beee5aeb97b8c40b72b2387",
       "files": 7
     },
     "network-forensics": {
       "path": "skills/network-forensics",
-      "sha256": "75163738e6cb957cb970e9448b529ab1b7b7bf1d2cb04d41e2ccb78aafde310f",
+      "sha256": "81beeebd114a6fc3e7ee5e61a30ef706c8d669b0c1c18521b830df917e43bcca",
       "files": 4
     },
     "persistence-hunting": {
       "path": "skills/persistence-hunting",
-      "sha256": "48ee23ab2dc23b6b5638d04cd22c52345a1f66c867b4ad4ec3089794089ed6c4",
+      "sha256": "01aca1abfbca89f05007474c0244c857df7abb2d7e1ffbfbd905d31ab9bb696b",
       "files": 15
     },
     "privesc-hunting": {
       "path": "skills/privesc-hunting",
-      "sha256": "ac36e8e5c8fab8267eb60774013b2a56c92657f30822bac691cbce83f3e05769",
+      "sha256": "db1c67509b55451b3814bdfb3d377f8d1a6842334b4cc3d18318808c6580cbe7",
       "files": 9
     },
     "process-memory-analysis": {
       "path": "skills/process-memory-analysis",
-      "sha256": "dac605cfaed46984fd2c7296a23b2aef032644e090cf7c0e7d7b678b8620ddf6",
+      "sha256": "42fc836b6db4a9cf6bddeaedc6f1af415f0b349f0cdcb47afaa065c18c5df783",
       "files": 4
     },
     "references": {
       "path": "skills/references",
-      "sha256": "05840fcf00ec2c98f26b9ac5cc19235b556a55cf4ba6736612aac9c8046679f9",
-      "files": 19
+      "sha256": "d3bc664a4de401e332c3e0b4ecf81ea1ff2cd9cfca184bce3a454bd1755599a0",
+      "files": 31
     },
     "reporting-discipline": {
       "path": "skills/reporting-discipline",
-      "sha256": "5e555b74ba9cec41278073b27b1f49089f4f527818955143721fab627b831064",
+      "sha256": "ab06d2d5a3d5e6fbc3efd9f749331a136f1f775bf4b5f4488741f859a4eb441a",
       "files": 3
     },
     "scope-discipline": {
       "path": "skills/scope-discipline",
-      "sha256": "ef74a6ac0cb1a26b2c7fd76a91671a5e152659e3edec5936e012c209c97dd0f9",
+      "sha256": "8ab9e3e06d2d3268fe24fc677586bb55ea6f37f6927d5a07f8c09fb70d5c369e",
       "files": 3
     },
     "telemetry-collection": {
       "path": "skills/telemetry-collection",
-      "sha256": "8224fdc03adf53916809a44305a297fd5bf4c4ba31e96a2477c2678f9383e515",
+      "sha256": "025e29c4b2beeeb22532ae53619f3e9eb85dc77f8ec91296928516b266f567c1",
       "files": 9
     },
     "threat-intel-enrichment": {
       "path": "skills/threat-intel-enrichment",
-      "sha256": "47822ec403eebd99b105efa1fa16b5442d71544daecd6a6e8be82da208c7a168",
+      "sha256": "369fbd2248af2c5a7799c0eb355d3786de743e19b5636605c1ebf0613e3918c2",
       "files": 4
     },
     "using-argus": {
       "path": "skills/using-argus",
-      "sha256": "d0b332b9b47a1d9095464f67b909db0db5f8eeb145356172b87f33da3d3029c7",
+      "sha256": "152ca442f9bb3a6165c5a60a4db21b22c46157660e7028f9f4fd879e546f1dca",
       "files": 3
     },
     "writing-defensive-skills": {
       "path": "skills/writing-defensive-skills",
-      "sha256": "f90196f0b94acb65ec7d3d730cd96bfbd52b2c7bcab385d05b8612a0d545d9da",
+      "sha256": "52c6566b0d8aef06dacf0c14ba626a9a248b75101130c977a6f0b508a92429e4",
       "files": 3
     },
     "yara-sigma-authoring": {
       "path": "skills/yara-sigma-authoring",
-      "sha256": "e3ec84242d5dcf2222d87d0e3f2c3ed1a96c00832028053ac87042dc0a3bd60b",
+      "sha256": "28395671e5bb54d85454264c292b358963c33dd836db6f637c98f12fed2c43f3",
       "files": 5
     }
   }

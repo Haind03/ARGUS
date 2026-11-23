@@ -9,4 +9,4 @@
 | WER crash dumps | crash-time state | often minimal |
 
 Paged-out memory is absent from RAM-based dumps; `pagefile.sys` strings can fill gaps.
-Protected processes (PPL: LSASS with RunAsPPL, AV) cannot be dumped from user mode — that is a protection working, not a failure.
+Protected processes (PPL: LSASS with RunAsPPL, AV) cannot be dumped from user mode, that is a protection working, not a failure.

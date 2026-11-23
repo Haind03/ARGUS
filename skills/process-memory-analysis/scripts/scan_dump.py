@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Analyse a process minidump / raw memory region dump — static, never executed.
+"""Analyse a process minidump / raw memory region dump, static, never executed.
 
   python -I scan_dump.py --dump proc-x-4321.dmp [--out-dir case/procmem] [--carve]
 
@@ -8,7 +8,7 @@ What it does
   * ASCII + UTF-16LE string extraction with IOC classification
     (URLs, IP:port, domains, .onion, mutex-like names, user-agents, crypto wallets, registry Run paths,
      PowerShell, credential-store paths, ransom text, miner pool strings, Discord/Telegram exfil)
-  * Embedded PE detection (MZ…PE\\0\\0) — with --carve, writes carved candidates as <offset>.bin.carved
+  * Embedded PE detection (MZ…PE\\0\\0), with --carve, writes carved candidates as <offset>.bin.carved
   * YARA (yara-python or yara CLI) using skills/references/yara/*.yar
   * Scores everything into one argus.triage/1-style result
 """

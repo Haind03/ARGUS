@@ -1,0 +1,4 @@
+# Suggested ~/.codex/config.toml settings for ARGUS (detect-only work).
+# by HaiND from the Post and Telecommunication Institute of Technology
+approval_policy = "on-request"     # agent asks before anything outside the sandbox
+sandbox_mode = "workspace-write"   # use "read-only" for pure hunting sessions

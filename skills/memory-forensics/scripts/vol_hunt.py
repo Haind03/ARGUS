@@ -77,7 +77,7 @@ def run_plugin(vol, image: Path, raw_dir: Path, plugin: str, extra: list[str] | 
 def acquire_json(image: Path, raw_dir: Path, profile: str, yara: bool):
     vol = vol_exe()
     if not vol:
-        sys.exit("volatility3 not found (pip install volatility3) — or pass --vol-json-dir")
+        sys.exit("volatility3 not found (pip install volatility3), or pass --vol-json-dir")
     raw_dir.mkdir(parents=True, exist_ok=True)
     for p in (FULL if profile == "full" else QUICK):
         run_plugin(vol, image, raw_dir, p)
@@ -312,7 +312,7 @@ class Hunt:
             if I.basename(p) in I.VULN_DRIVERS:
                 self.add("ARG-MEM-019", "Known vulnerable driver loaded (modules)", "TA0004", "T1068",
                          {"path": p}, f"mem|mod|{p}", [Signal("known_vulnerable_driver", 60)],
-                         "BYOVD lead — often precedes EDR/AV killing.")
+                         "BYOVD lead, often precedes EDR/AV killing.")
 
     def ssdt(self):
         bad = [r for r in load(self.raw, "windows.ssdt")
@@ -322,7 +322,7 @@ class Hunt:
             self.add("ARG-MEM-020", "SSDT entry pointing outside the kernel (rootkit hook)", "TA0005", "T1014",
                      {"index": g(r, "Index"), "symbol": g(r, "Symbol"), "module": g(r, "Module")},
                      f"mem|ssdt|{g(r, 'Index')}", [Signal("ssdt_hook", 55, str(g(r, "Module")))],
-                     "Strong rootkit indicator (PatchGuard normally prevents this on x64) — consider rebuild.")
+                     "Strong rootkit indicator (PatchGuard normally prevents this on x64), consider rebuild.")
 
     def callbacks(self):
         known = re.compile(r"ntoskrnl|wdfilter|wdboot|wd|ksecdd|cng|fltmgr|tcpip|ndis|cldflt|ci\.dll|peauth|"
@@ -383,7 +383,7 @@ class Hunt:
             if sigs:
                 self.add("ARG-MEM-026", "Suspicious Run key in in-memory registry hive", "TA0003", "T1547.001",
                          {"key": g(r, "Key"), "name": g(r, "Name"), "data": data}, f"mem|run|{g(r, 'Name')}", sigs,
-                         "Compare with on-disk autoruns (live collector) — a difference implies tampering.")
+                         "Compare with on-disk autoruns (live collector), a difference implies tampering.")
 
     def files(self):
         hits = defaultdict(list)

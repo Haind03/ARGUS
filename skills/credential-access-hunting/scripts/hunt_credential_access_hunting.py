@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Credential Access (TA0006) detector — thin wrapper over the ARGUS engine. Run with: python -I credential_access_hunting.py"""
+"""Credential Access (TA0006) detector, thin wrapper over the ARGUS engine. Run with: python -I credential_access_hunting.py"""
 import sys
 from pathlib import Path
 

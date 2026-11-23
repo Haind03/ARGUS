@@ -168,7 +168,7 @@ def run_workflow(case_dir: str, workflow: dict, tel: dict, preset: dict, baselin
             fs = [f.to_dict() for f in run_rules(tel, p, baseline_keys)]
             rec["findings"] = len(fs)
             rec["top_score"] = max((f["score"] for f in fs), default=0)
-            rec["hypothesis_verdict"] = ("supported — investigate" if rec["top_score"] >= 60 else
+            rec["hypothesis_verdict"] = ("supported, investigate" if rec["top_score"] >= 60 else
                                          "weak leads" if fs else "not supported by available data")
             all_findings += fs
             write_json(case / "phases" / f"{pid}.json", {"phase": rec, "findings": fs})
@@ -192,7 +192,7 @@ def build_report(case_dir: str, tel: dict, allow_open: bool = False) -> dict[str
     case, meta = load_case(case_dir)
     fpath = case / "phases" / "_findings.json"
     if not fpath.is_file():
-        raise ValueError("no workflow results yet — run `argus case run` first")
+        raise ValueError("no workflow results yet, run `argus case run` first")
     findings = json.loads(fpath.read_text(encoding="utf-8"))
     disp = json.loads((case / "dispositions.json").read_text(encoding="utf-8"))
     ok, open_keys = gate_dispositions(findings, disp)
@@ -223,5 +223,7 @@ def build_report(case_dir: str, tel: dict, allow_open: bool = False) -> dict[str
     md = R.markdown(res).replace("# ARGUS Hunt Report", f"# ARGUS Case Report [{res['status']}]", 1)
     write_text(safe_child(out, stem + ".md"), md)
     write_json(safe_child(out, stem + ".navigator.json"), R.navigator_layer(res, f"ARGUS case {meta.get('name')}"))
+    from .html_report import render
+    write_text(safe_child(out, stem + ".html"), render(res))
     audit(case, "report.built", status=res["status"], findings=len(shown))
     return {"status": res["status"], "out": str(out / stem), "findings": len(shown)}

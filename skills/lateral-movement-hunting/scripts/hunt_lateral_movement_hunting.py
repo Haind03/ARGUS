@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Lateral Movement (TA0008) detector — thin wrapper over the ARGUS engine. Run with: python -I lateral_movement_hunting.py"""
+"""Lateral Movement (TA0008) detector, thin wrapper over the ARGUS engine. Run with: python -I lateral_movement_hunting.py"""
 import sys
 from pathlib import Path
 

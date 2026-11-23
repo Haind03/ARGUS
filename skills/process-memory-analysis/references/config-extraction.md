@@ -8,7 +8,7 @@
 | `lsass_dump` | 25 | credential dumper strings | AV signatures in AV process memory |
 | `credential_store` | 20 | infostealer target paths | browsers themselves, password managers |
 | `messaging_exfil` | 25 | Discord webhook / Telegram bot exfil | Discord client |
-| `miner` | 25 | cryptominer config | — |
+| `miner` | 25 | cryptominer config | n/a |
 | `xmr_wallet` / `btc_wallet` / `eth_wallet` | 20/10/8 | miners, clippers (clipboard hijack), ransom | wallet apps, browsers |
 | `amsi_bypass` | 20 | in-memory AMSI patch | AV |
 | `powershell` | 15 | stagers | PowerShell host itself |

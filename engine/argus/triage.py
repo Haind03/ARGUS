@@ -127,18 +127,20 @@ def _parse_imports(data: bytes, opt: int, pe32p: bool, sections: list[dict]) -> 
 
 
 def run_yara(path: Path, rules_dir: Path) -> list[str]:
+    """Match the vendored Exhume+Unveil bundle plus local starter rules (yara-python, in memory).
+    Falls back to the yara CLI with local starter rules only (the bundle is never written to disk)."""
     rule_files = sorted(p for p in rules_dir.glob("*.yar") if p.is_file() and not p.is_symlink())
-    if not rule_files:
-        return []
+    root = rules_dir.parent.parent.parent
     try:
-        import yara  # type: ignore
-        compiled = yara.compile(filepaths={p.stem: str(p) for p in rule_files})
-        return [m.rule for m in compiled.match(str(path), timeout=60)]
-    except ImportError:
-        pass
+        from .yara_bundle import compile_all
+        rules, n = compile_all(root, rule_files)
+        if rules is not None:
+            return sorted({m.rule for m in rules.match(str(path), timeout=120)})
+    except Exception as exc:  # broken bundle must not break triage
+        return [f"(yara bundle error: {type(exc).__name__})"]
     exe = shutil.which("yara64") or shutil.which("yara")
-    if not exe:
-        return ["(yara not installed — skipped)"]
+    if not exe or not rule_files:
+        return ["(yara-python not installed; vendored rules skipped)"]
     hits = []
     for rf in rule_files:
         try:

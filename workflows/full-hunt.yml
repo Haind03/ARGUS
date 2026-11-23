@@ -17,7 +17,7 @@ phases:
       blocking: true
 
   - id: pre-compromise
-    name: TA0043 / TA0042 — out of host scope
+    name: TA0043 / TA0042, out of host scope
     skills: [threat-intel-enrichment]
     hypothesis: Known attacker infrastructure (domains/IPs/hashes) from intel appears in local telemetry.
     tactics: []

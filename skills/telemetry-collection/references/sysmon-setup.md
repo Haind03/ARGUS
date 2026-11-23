@@ -1,7 +1,7 @@
 # Sysmon setup (opt-in, changes system configuration)
 
 Sysmon is the single biggest visibility upgrade for a personal Windows PC. It is a free Microsoft
-Sysinternals tool. Installing it is a **system change** — ask the user first.
+Sysinternals tool. Installing it is a **system change**, ask the user first.
 
 ```powershell
 # Download from https://learn.microsoft.com/sysinternals/downloads/sysmon (verify signature: Microsoft Corporation)

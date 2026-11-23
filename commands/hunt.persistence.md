@@ -1,5 +1,5 @@
 ---
-description: Hunt persistence (TA0003) — Run keys, Startup, tasks, services, WMI, IFEO, Winlogon, AppInit, BITS, COM, accounts, extensions
+description: Hunt persistence (TA0003), Run keys, Startup, tasks, services, WMI, IFEO, Winlogon, AppInit, BITS, COM, accounts, extensions
 argument-hint: "[telemetry.json] [--baseline baseline.json]"
 ---
 

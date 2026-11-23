@@ -13,7 +13,7 @@ phases:
     hypothesis: Authorised own machine; collection includes files and shadow-copy count.
     gate: {require_sections: [host, processes], blocking: true}
   - id: impact
-    name: TA0040 Impact (first — time critical)
+    name: TA0040 Impact (first, time critical)
     skills: [impact-hunting]
     hypothesis: Shadow copies deleted, services mass-stopped, ransom notes or mass renames present.
     tactics: [TA0040]

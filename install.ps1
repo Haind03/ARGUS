@@ -1,4 +1,5 @@
 <#
+  ARGUS by HaiND from the Post and Telecommunication Institute of Technology
 .SYNOPSIS
   ARGUS installer for Windows (manual install into %USERPROFILE%\.claude). Prefer the plugin install
   (/plugin marketplace add haind03/argus) when available.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Privilege Escalation (TA0004) detector — thin wrapper over the ARGUS engine. Run with: python -I privesc_hunting.py"""
+"""Privilege Escalation (TA0004) detector, thin wrapper over the ARGUS engine. Run with: python -I privesc_hunting.py"""
 import sys
 from pathlib import Path
 

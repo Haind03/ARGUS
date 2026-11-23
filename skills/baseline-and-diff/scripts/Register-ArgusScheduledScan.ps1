@@ -1,4 +1,5 @@
 <#
+  ARGUS by HaiND from the Post and Telecommunication Institute of Technology
 .SYNOPSIS
   Register (opt-in) the ARGUS scheduled hunt in Task Scheduler. Without -Register it only prints the plan.
   Authorised use on your own machine only.

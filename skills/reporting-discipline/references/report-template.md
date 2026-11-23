@@ -1,4 +1,4 @@
-# <Host> — ARGUS hunt report (<FINAL|DRAFT>)
+# <Host>: ARGUS hunt report (<FINAL|DRAFT>)
 
 **Date (UTC):** · **Analyst:** · **Case:** · **Workflow / preset:** · **Baseline:** yes/no · **Online intel:** off/on (hashes sent: n)
 

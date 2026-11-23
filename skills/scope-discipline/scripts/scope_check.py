@@ -41,9 +41,9 @@ def main():
                             "collected it on your OWN other device")
     for t in a.target:
         if re.match(r"^(\\\\|//)", t):
-            problems.append(f"network/UNC target '{t}' — remote shares are out of scope")
+            problems.append(f"network/UNC target '{t}', remote shares are out of scope")
         elif re.match(r"^(?:\d{1,3}\.){3}\d{1,3}$", t) or re.match(r"^[a-z][\w.-]*\.[a-z]{2,}$", t, re.I):
-            problems.append(f"remote host target '{t}' — ARGUS does not touch other hosts (passive intel only)")
+            problems.append(f"remote host target '{t}', ARGUS does not touch other hosts (passive intel only)")
     if problems:
         print("OUT OF SCOPE / NOT ATTESTED:")
         for p in problems:

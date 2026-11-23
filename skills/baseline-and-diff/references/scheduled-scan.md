@@ -10,7 +10,7 @@ Task "ARGUS\ScheduledHunt" (SYSTEM, highest privileges, daily + at logon +15 min
 ```
 
 - Python discovery: `py -3` launcher, then `python`. Python must be installed for all users (SYSTEM).
-- `%ProgramData%\ARGUS` ACL: Administrators + SYSTEM full, Users read — telemetry contains command lines.
+- `%ProgramData%\ARGUS` ACL: Administrators + SYSTEM full, Users read, telemetry contains command lines.
 - Online intel stays **off** in scheduled mode unless the user sets `ARGUS_INTEL_ONLINE=1` machine-wide
   *and* provides keys; the scan logs which hashes (if any) were sent.
 - Remove: `Unregister-ScheduledTask -TaskName ScheduledHunt -TaskPath \ARGUS\`.

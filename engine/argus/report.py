@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from . import SIGNATURE
 from .rules import TACTICS, TACTIC_SHORTNAME, covered_techniques
 
 SEV_COLOR = {"critical": "#d7191c", "high": "#fd8d3c", "medium": "#fecc5c", "low": "#a6d96a", "info": "#e0e0e0"}
@@ -17,15 +18,15 @@ def markdown(result: dict[str, Any], baseline_delta: dict | None = None) -> str:
     s = result["summary"]
     sev = s["by_severity"]
     lines = [
-        f"# ARGUS Hunt Report — {result.get('target_host') or 'unknown host'}",
+        f"# ARGUS Hunt Report, {result.get('target_host') or 'unknown host'}",
         "",
         f"- Generated: `{result['generated_at']}`  |  Telemetry: `{result.get('telemetry_collected_at')}`",
         f"- Preset: `{result['preset']}`  |  Baseline applied: `{result['baseline_applied']}`  |  Mode: **{result['mode']}**",
-        f"- Findings: **{s['total']}** — critical {sev.get('critical',0)}, high {sev.get('high',0)}, "
+        f"- Findings: **{s['total']}**, critical {sev.get('critical',0)}, high {sev.get('high',0)}, "
         f"medium {sev.get('medium',0)}, low {sev.get('low',0)}",
         "",
         "> Scope: this report covers only the user's own, authorized machine. Scores are heuristic leads, "
-        "not verdicts — every finding needs analyst validation (see false-positive-discipline).",
+        "not verdicts, every finding needs analyst validation (see false-positive-discipline).",
         "",
         "## Executive summary",
         "",
@@ -36,7 +37,7 @@ def markdown(result: dict[str, Any], baseline_delta: dict | None = None) -> str:
     elif s["total"]:
         lines.append("Only low/medium-confidence leads. Review them against the baseline and known software.")
     else:
-        lines.append("No findings above threshold. This is not proof of a clean host — check collection gaps below.")
+        lines.append("No findings above threshold. This is not proof of a clean host, check collection gaps below.")
     lines += ["", "## Findings by tactic", "", "| Tactic | Count |", "|---|---|"]
     for tid, name in TACTICS.items():
         n = s["by_tactic"].get(tid, 0)
@@ -53,7 +54,7 @@ def markdown(result: dict[str, Any], baseline_delta: dict | None = None) -> str:
     for i, f in enumerate(result["findings"][:100], 1):
         lines += [f"### {i}. [{f['severity'].upper()} {f['score']}] {f['title']}",
                   f"- ATT&CK: `{f['technique']}` ({f['tactic']} {TACTICS.get(f['tactic'],'')})",
-                  f"- Rule: `{f['rule_id']}`{'  — *known in baseline (down-weighted)*' if f.get('baseline_known') else ''}",
+                  f"- Rule: `{f['rule_id']}`{', *known in baseline (down-weighted)*' if f.get('baseline_known') else ''}",
                   "- Signals: " + ", ".join(f"`{sg['name']}`({sg['weight']:+d}{': ' + _md_escape(sg['detail'])[:80] if sg.get('detail') else ''})"
                                            for sg in f["signals"]),
                   "- Artifact:", "", "```json"]
@@ -66,7 +67,7 @@ def markdown(result: dict[str, Any], baseline_delta: dict | None = None) -> str:
     if baseline_delta:
         lines += ["## Changes since baseline", ""]
         for cat, ch in baseline_delta.items():
-            lines.append(f"**{cat}** — +{len(ch['added'])} / -{len(ch['removed'])}")
+            lines.append(f"**{cat}**, +{len(ch['added'])} / -{len(ch['removed'])}")
             for a in ch["added"][:25]:
                 lines.append(f"- + `{_md_escape(a)}`")
             lines.append("")
@@ -77,6 +78,7 @@ def markdown(result: dict[str, Any], baseline_delta: dict | None = None) -> str:
               "1. Validate top findings (evidence-discipline: hash + copy artefacts before any change).",
               "2. Mark confirmed false positives in the baseline / preset `disabled_rules`.",
               "3. Remediation is **opt-in** via the incident-response skill (`-WhatIf` first).", ""]
+    lines += ["---", f"*{SIGNATURE}*", ""]
     return "\n".join(lines)
 
 
@@ -103,7 +105,7 @@ def navigator_layer(result: dict[str, Any], name: str = "ARGUS hunt") -> dict[st
     return {
         "name": name, "versions": {"attack": "16", "navigator": "5.1.0", "layer": "4.5"},
         "domain": "enterprise-attack",
-        "description": f"ARGUS findings for {result.get('target_host')} at {result['generated_at']} "
+        "description": f"{SIGNATURE}. Findings for {result.get('target_host')} at {result['generated_at']} "
                        "(light blue = covered, coloured = finding severity)",
         "filters": {"platforms": ["Windows"]}, "sorting": 3,
         "layout": {"layout": "side", "showID": True, "showName": True},

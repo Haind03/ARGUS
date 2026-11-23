@@ -35,7 +35,7 @@ for tid, skill, tname, sections, use_when, techs in T:
             e["tactics"].append(tid)
         e["rules"] = sorted(set(e["rules"]) | set(rules))
         e["references"].append(f"skills/{skill}/references/{fn}")
-        w(f"{d}/references/{fn}", f"""# {xid} — {name}
+        w(f"{d}/references/{fn}", f"""# {xid}, {name}
 
 | Field | Value |
 |---|---|
@@ -60,19 +60,19 @@ python -I engine/argus_cli.py rules --tactic {tid}
 ```
 
 ## Manual validation steps
-1. Pull the full artefact from the finding (`artifact` block) — path, command line, registry value, event.
+1. Pull the full artefact from the finding (`artifact` block), path, command line, registry value, event.
 2. Hash and copy it as evidence **before** any change (evidence-discipline).
 3. Check signer, creation time and parent chain; correlate ±10 min in Sysmon/Security logs.
-4. Compare with the baseline (`argus diff`) — was it present on the clean snapshot?
+4. Compare with the baseline (`argus diff`), was it present on the clean snapshot?
 5. Decide: true positive → incident-response (opt-in) · false positive → document + tune.
 
 ## Common false positives
 {fps}
 
 ## Rationalizations to reject
-- "It's signed, so it's fine." — signed LOLBins and stolen certificates are the norm for this technique.
-- "Score is low, skip it." — low scores are leads; correlate with other tactics before closing.
-- "Delete it now to be safe." — destroys evidence; detect-only until the user opts in.
+- "It's signed, so it's fine.", signed LOLBins and stolen certificates are the norm for this technique.
+- "Score is low, skip it.", low scores are leads; correlate with other tactics before closing.
+- "Delete it now to be safe.", destroys evidence; detect-only until the user opts in.
 """)
     rows = "\n".join(f"| `{x}` | {n} | [{fn}](references/{fn}) | {', '.join(r)} |" for x, n, fn, r in refs)
     cname = "".join(p.capitalize() for p in skill.split("-")[:-1]) or skill
@@ -109,7 +109,7 @@ or directly when a lead points at this tactic.
 
 ## Output
 Each finding: `artifact`, `technique`, `signals_matched`, `score` (0-100), `severity`, `action`
-(recommended analyst action). Scores are heuristic — never report a finding as confirmed without validation.
+(recommended analyst action). Scores are heuristic, never report a finding as confirmed without validation.
 
 ## Hand-off
 - Confirmed malicious → `incident-response` (opt-in only), `malware-triage` for the binary.
@@ -132,7 +132,7 @@ if ($HashProcesses) {{ $args2.HashProcesses = $true }}
 & $collector @args2
 """)
     w(f"{d}/scripts/hunt_{skill.replace('-', '_')}.py", f'''#!/usr/bin/env python3
-"""{tname} ({tid}) detector — thin wrapper over the ARGUS engine. Run with: python -I {skill.replace('-', '_')}.py"""
+"""{tname} ({tid}) detector, thin wrapper over the ARGUS engine. Run with: python -I {skill.replace('-', '_')}.py"""
 import sys
 from pathlib import Path
 
@@ -156,8 +156,8 @@ if __name__ == "__main__":
 
 # pre-compromise tactics: documented, not host-observable
 index["out_of_host_scope"] = {
-    "TA0043": "Reconnaissance — happens on attacker infrastructure; at most visible as inbound scans in firewall logs.",
-    "TA0042": "Resource Development — attacker infrastructure; consume as threat-intel IOCs (domains/IPs) only.",
+    "TA0043": "Reconnaissance, happens on attacker infrastructure; at most visible as inbound scans in firewall logs.",
+    "TA0042": "Resource Development, attacker infrastructure; consume as threat-intel IOCs (domains/IPs) only.",
 }
 with open(f"{ROOT}/skills/references/ttp-index.json", "w", encoding="utf-8") as f:
     json.dump(index, f, indent=2, sort_keys=True)

@@ -1,6 +1,6 @@
 ---
 name: evidence-discipline
-description: Use when about to change anything on a possibly compromised PC and whenever collecting artefacts — hashing and copying files read-only into the case, chain of custody, order of volatility, protecting sensitive evidence (memory, browser data), and keeping the hunt reproducible.
+description: Use when about to change anything on a possibly compromised PC and whenever collecting artefacts, hashing and copying files read-only into the case, chain of custody, order of volatility, protecting sensitive evidence (memory, browser data), and keeping the hunt reproducible.
 ---
 
 # Evidence discipline
@@ -25,6 +25,6 @@ python -I engine/argus_cli.py case verify --case argus-cases/pc1      # audit ch
 - Open, run, or "check" a sample by double-clicking.
 - Copy samples into synced folders (OneDrive/Dropbox upload them).
 - Let cleaners run before collection.
-- Overwrite telemetry — every collection is a new timestamped file.
+- Overwrite telemetry, every collection is a new timestamped file.
 
 Reference: [chain-of-custody.md](references/chain-of-custody.md)

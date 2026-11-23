@@ -1,4 +1,5 @@
 <#
+  ARGUS by HaiND from the Post and Telecommunication Institute of Technology
 .SYNOPSIS
   One ARGUS scan cycle: collect (read-only) -> hunt (detect-only) -> report. Used by the scheduled task.
   Authorised use on your own machine only. Never remediates.

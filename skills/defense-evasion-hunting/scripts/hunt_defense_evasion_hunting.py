@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Defense Evasion (TA0005) detector — thin wrapper over the ARGUS engine. Run with: python -I defense_evasion_hunting.py"""
+"""Defense Evasion (TA0005) detector, thin wrapper over the ARGUS engine. Run with: python -I defense_evasion_hunting.py"""
 import sys
 from pathlib import Path
 

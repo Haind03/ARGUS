@@ -1,12 +1,12 @@
 ---
 name: process-memory-analysis
-description: Use when you have a single PROCESS DUMP (minidump from memory-acquisition, ProcDump, Task Manager, WER crash dump) or a region/VAD/DLL dumped by Volatility and need to extract IOCs and malware config — URLs, C2 IP:port, wallets, mutexes, stealer targets, ransom text — find embedded/injected PE images, and YARA-scan it, all statically.
+description: Use when you have a single PROCESS DUMP (minidump from memory-acquisition, ProcDump, Task Manager, WER crash dump) or a region/VAD/DLL dumped by Volatility and need to extract IOCs and malware config, URLs, C2 IP:port, wallets, mutexes, stealer targets, ransom text, find embedded/injected PE images, and YARA-scan it, all statically.
 ---
 
 # Process memory analysis (static)
 
 > **Scope:** dumps from the user's own, authorised machine. A process dump may contain the user's
-> secrets (browser dumps contain cookies/passwords) — keep it in the case folder, never upload it.
+> secrets (browser dumps contain cookies/passwords), keep it in the case folder, never upload it.
 
 ## Why process memory
 Packed/encrypted malware is only readable **after** it unpacks in memory: C2 URLs, configs, mutexes and
@@ -22,7 +22,7 @@ Output (`argus.procmem/1`): minidump modules (user-path modules flagged), IOC cl
 optional carved PEs, YARA hits, signals → score.
 
 ## Interpreting
-- [config-extraction.md](references/config-extraction.md) — what each IOC class means and how to pivot
-- [dump-sources.md](references/dump-sources.md) — where dumps come from and their limits
+- [config-extraction.md](references/config-extraction.md), what each IOC class means and how to pivot
+- [dump-sources.md](references/dump-sources.md), where dumps come from and their limits
 - C2 candidates → `threat-intel-enrichment` (opt-in) and local `ioc/` lists; families → `yara-sigma-authoring`.
 - Strings appear in benign processes too (browsers hold every URL visited). Weight by process type.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Discovery (TA0007) detector — thin wrapper over the ARGUS engine. Run with: python -I discovery_hunting.py"""
+"""Discovery (TA0007) detector, thin wrapper over the ARGUS engine. Run with: python -I discovery_hunting.py"""
 import sys
 from pathlib import Path
 

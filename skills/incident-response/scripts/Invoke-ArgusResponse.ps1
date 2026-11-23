@@ -1,6 +1,7 @@
 <#
+  ARGUS by HaiND from the Post and Telecommunication Institute of Technology
 .SYNOPSIS
-  ARGUS incident response — OPT-IN ONLY. Default is -WhatIf (prints what would happen).
+  ARGUS incident response, OPT-IN ONLY. Default is -WhatIf (prints what would happen).
 
 .DESCRIPTION
   Containment / eradication actions for the user's OWN machine, each evidence-preserving:

@@ -1,6 +1,6 @@
 ---
 name: using-argus
-description: Use when starting ANY threat-hunting, malware-check, forensics or incident task on the user's own Windows PC — establishes how to route to the right ARGUS skill before acting (including before collecting data, answering "am I infected?", triaging a file, or writing a report).
+description: Use when starting ANY threat-hunting, malware-check, forensics or incident task on the user's own Windows PC, establishes how to route to the right ARGUS skill before acting (including before collecting data, answering "am I infected?", triaging a file, or writing a report).
 ---
 
 <SUBAGENT-STOP>
@@ -14,12 +14,12 @@ If there is even a small chance a skill applies, load it with the Skill tool **b
 announce: "Using <skill> to <purpose>".
 
 ## Non-negotiables (the user cannot waive 1-3)
-1. **Scope** — only the user's own / explicitly authorised machine (`scope-discipline`).
-2. **Detect-only** — never kill, delete, quarantine, change Defender/firewall/registry/services unless the
+1. **Scope**, only the user's own / explicitly authorised machine (`scope-discipline`).
+2. **Detect-only**, never kill, delete, quarantine, change Defender/firewall/registry/services unless the
    user opted in through `incident-response`. The PreToolUse guard enforces this.
-3. **Privacy** — offline by default; online intel sends SHA-256 only, only with explicit opt-in + API keys.
+3. **Privacy**, offline by default; online intel sends SHA-256 only, only with explicit opt-in + API keys.
 4. **Evidence before change**, **validation before verdict**: scores are leads, not conclusions.
-5. **No AV exclusions** — never suggest excluding ARGUS or anything else from Defender.
+5. **No AV exclusions**, never suggest excluding ARGUS or anything else from Defender.
 
 ## Priority
 1. Discipline first: `scope-discipline` → `hunt-methodology` → (`evidence-discipline`, `false-positive-discipline`) → `reporting-discipline`.
@@ -55,11 +55,11 @@ python -I engine/argus_cli.py case report --case ... --input <telemetry.json>
 ```
 Always run Python with `-I`. Collectors are PowerShell, read-only. Outputs: JSON + Markdown + ATT&CK Navigator layer.
 
-## Red flags — stop and re-check
+## Red flags: stop and re-check
 | Thought | Reality |
 |---|---|
 | "I'll just delete this suspicious file" | detect-only; evidence first; IR opt-in required |
-| "Score 90, so it's malware" | heuristic lead — validate (false-positive-discipline) |
+| "Score 90, so it's malware" | heuristic lead, validate (false-positive-discipline) |
 | "No findings, the PC is clean" | check collection gaps; absence of evidence ≠ evidence of absence |
 | "Upload the sample to VirusTotal" | uploads make files public; hash-only, opt-in only |
 | "Add a Defender exclusion so ARGUS runs" | never; report the false positive instead |

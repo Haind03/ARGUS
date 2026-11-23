@@ -3,7 +3,7 @@
 
 YARA : compiles with yara-python (or `yara` CLI); requires meta author/description/attack;
        warns on plain-text strings longer than 12 chars that look like tool/malware signatures
-       (prefer hex or \\xNN-escaped regex — see references/av-safe-rules.md).
+       (prefer hex or \\xNN-escaped regex, see references/av-safe-rules.md).
 Sigma: required fields (title, id UUID, status, description, logsource, detection.condition, level),
        ATT&CK tags (attack.tXXXX), falsepositives present; needs PyYAML for full parsing.
 Exit 1 on any error.
@@ -42,7 +42,7 @@ def check_yara(p: Path) -> list[str]:
             if r.returncode not in (0, 1):
                 errs.append(f"{p.name}: compile error: {r.stderr.strip()[:300]}")
         else:
-            errs.append(f"{p.name}: WARN yara not installed — compile not checked")
+            errs.append(f"{p.name}: WARN yara not installed, compile not checked")
     except Exception as e:  # yara.SyntaxError
         errs.append(f"{p.name}: compile error: {e}")
     return errs
@@ -54,7 +54,7 @@ def check_sigma(p: Path) -> list[str]:
         import yaml  # type: ignore
         d = yaml.safe_load(p.read_text(encoding="utf-8"))
     except ImportError:
-        return [f"{p.name}: WARN PyYAML missing — Sigma structure not checked"]
+        return [f"{p.name}: WARN PyYAML missing, Sigma structure not checked"]
     except Exception as e:
         return [f"{p.name}: YAML error: {e}"]
     for k in ("title", "id", "status", "description", "logsource", "detection", "level", "falsepositives"):

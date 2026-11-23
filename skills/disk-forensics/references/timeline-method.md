@@ -10,4 +10,4 @@
 5. **Record** every pivot in the case notes with source + timestamp (evidence-discipline).
 
 Pitfalls: time zones (store UTC), clock skew, Prefetch timestamps are last-8-runs not first run, ShimCache
-time is file modification time (not execution), timestomped $SI times — prefer $FN and USN.
+time is file modification time (not execution), timestomped $SI times, prefer $FN and USN.

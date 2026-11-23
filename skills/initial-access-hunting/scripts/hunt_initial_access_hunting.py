@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Initial Access (TA0001) detector — thin wrapper over the ARGUS engine. Run with: python -I initial_access_hunting.py"""
+"""Initial Access (TA0001) detector, thin wrapper over the ARGUS engine. Run with: python -I initial_access_hunting.py"""
 import sys
 from pathlib import Path
 

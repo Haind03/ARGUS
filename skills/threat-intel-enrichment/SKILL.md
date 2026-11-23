@@ -1,6 +1,6 @@
 ---
 name: threat-intel-enrichment
-description: Use when you want to check hashes, domains or IPs from ARGUS findings against threat intelligence — local offline IOC lists by default, and VirusTotal v3 / MalwareBazaar (abuse.ch) ONLY when the user explicitly opts in with API keys.
+description: Use when you want to check hashes, domains or IPs from ARGUS findings against threat intelligence, local offline IOC lists by default, and VirusTotal v3 / MalwareBazaar (abuse.ch) ONLY when the user explicitly opts in with API keys.
 ---
 
 # Threat-intel enrichment (hybrid opt-in)
@@ -16,7 +16,7 @@ description: Use when you want to check hashes, domains or IPs from ARGUS findin
 | Online (opt-in) | `ARGUS_INTEL_ONLINE=1` **or** `--online`, **and** `VT_API_KEY` / `ABUSECH_AUTH_KEY` env vars | **SHA-256 only** |
 
 Never send: file contents, file paths, usernames, hostnames, command lines, IPs of the user's own network.
-Uploading a sample to VirusTotal makes it **public to VT subscribers** — this toolkit never uploads files; if the
+Uploading a sample to VirusTotal makes it **public to VT subscribers**, this toolkit never uploads files; if the
 user wants that, they do it themselves knowingly.
 
 ## Use
@@ -31,10 +31,10 @@ Before going online, **tell the user exactly which hashes will be sent** (the re
 
 ## Scoring impact
 local hash IOC +40 · local domain/IP IOC +35 · VT ≥5 malicious +30 · MalwareBazaar known sample +30.
-"Not found" online is **not** evidence of benign — new/targeted samples are often unknown.
+"Not found" online is **not** evidence of benign, new/targeted samples are often unknown.
 
 ## Local IOC lists
-`skills/references/ioc/{hashes_sha256,domains,ips,vuln_drivers}.txt` — one per line, `#` comments.
+`skills/references/ioc/{hashes_sha256,domains,ips,vuln_drivers}.txt`, one per line, `#` comments.
 Update offline from exports (abuse.ch ThreatFox/URLhaus/MalwareBazaar CSV, loldrivers.io) via
 `scripts/update_iocs.py --from-file <export.csv>` (no network access in the script).
 References: [references/providers.md](references/providers.md).

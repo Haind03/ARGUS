@@ -2,7 +2,7 @@
   "name": "argus-marketplace",
   "description": "Marketplace for ARGUS (defensive-claude), a detect-only threat-hunting toolkit",
   "owner": {
-    "name": "haind03",
+    "name": "HaiND (Post and Telecommunication Institute of Technology)",
     "url": "https://github.com/haind03"
   },
   "plugins": [

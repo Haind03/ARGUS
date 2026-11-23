@@ -1,6 +1,6 @@
 ---
 name: incident-response
-description: Use when (and only when) the user explicitly wants to CONTAIN or REMOVE a confirmed threat on their own PC — network isolation, quarantining a file, killing a process, disabling a task/service, removing a Run value or WMI binding — through time-boxed IR opt-in, evidence-first, dry-run-by-default actions; also for ransomware/infostealer first-response advice.
+description: Use when (and only when) the user explicitly wants to CONTAIN or REMOVE a confirmed threat on their own PC, network isolation, quarantining a file, killing a process, disabling a task/service, removing a Run value or WMI binding, through time-boxed IR opt-in, evidence-first, dry-run-by-default actions; also for ransomware/infostealer first-response advice.
 ---
 
 # Incident response (OPT-IN)
@@ -31,7 +31,7 @@ Refuses: protected OS paths, critical processes, non-Run registry keys, expired 
 Every action → `<case>\response-log.jsonl`. Revoke when done: `argus case revoke --case <dir>`.
 
 ## Playbooks
-- [containment-order.md](references/containment-order.md) — the order that avoids losing evidence or tipping off the attacker
+- [containment-order.md](references/containment-order.md), the order that avoids losing evidence or tipping off the attacker
 - [ransomware-first-response.md](references/ransomware-first-response.md)
 - Infostealer: `browser-forensics/references/infostealer-response.md`
 - When to rebuild instead of clean: [rebuild-vs-clean.md](references/rebuild-vs-clean.md)

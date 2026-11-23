@@ -1,6 +1,6 @@
 ---
 name: scope-discipline
-description: Use when about to collect from, scan, dump memory of, capture traffic on or analyse ANY machine, file share, account or network — confirms the target is the user's own (or explicitly authorised) machine and keeps every ARGUS action inside that boundary.
+description: Use when about to collect from, scan, dump memory of, capture traffic on or analyse ANY machine, file share, account or network, confirms the target is the user's own (or explicitly authorised) machine and keeps every ARGUS action inside that boundary.
 ---
 
 # Scope discipline
@@ -12,7 +12,7 @@ scanner for other people's systems.
 1. Ask (if not already clear): *Is this your own computer, or do you have written permission from its owner?*
 2. Open a case with the attestation: `argus case init --name <pc-date> --i-own-this-machine`.
 3. Check: `python -I skills/scope-discipline/scripts/scope_check.py --case <dir> [--telemetry t.json]`
-   — verifies attestation, that telemetry came from the local host (or a host named in the case),
+verifies attestation, that telemetry came from the local host (or a host named in the case),
    and flags UNC/network paths and remote targets.
 
 ## In scope

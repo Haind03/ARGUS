@@ -34,9 +34,9 @@ def main(argv):
         if str(res.get("status", "")).startswith("DRAFT") and "DRAFT" not in text:
             errs.append("JSON status is DRAFT but Markdown is not labelled DRAFT")
     if SECRET.search(text):
-        errs.append("possible secret/token in report — redact before sharing")
+        errs.append("possible secret/token in report, redact before sharing")
     if EMAIL.search(text):
-        warns.append("email address present — redact third-party PII before sharing")
+        warns.append("email address present, redact third-party PII before sharing")
     for e in errs:
         print("ERROR:", e)
     for w in warns:
